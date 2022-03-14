@@ -11,9 +11,9 @@
 </head>
 <body>
 	<h1 style="text-align:center;">
-	 Share My House 
+	Share My House 
 	</h1>
-
+	<p><a href='user.php'>profile</a>
 </body>
 </html>
 
