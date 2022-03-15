@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="index.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Index</title>
 </head>
@@ -13,7 +13,7 @@
 	<h1 style="text-align:center;">
 	Share My House 
 	</h1>
-	<p><a href='user.php'>profile</a>
+	<p><a href='user/user.php'>profile</a>
 </body>
 </html>
 

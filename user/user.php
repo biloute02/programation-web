@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include('include/connex.inc.php');
+	include('../include/connex.inc.php');
 	$base = 'house';
 	$param = 'myparam';
 	$idcom = connex($base,$param);
@@ -15,7 +15,7 @@
 </head>
 <body>
 	<h1 style="text-align:center;">
-	<a href=index.php>Share My House</a>
+	<a href=../index.php>Share My House</a>
 	<br>Profil	
 	</h1>
 </body>
