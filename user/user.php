@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	include('../include/connex.inc.php');
-	$base = 'house';
-	$param = 'myparam';
-	$idcom = connex($base,$param);
+	$idcom = connex("myparam");
+    if (!empty($_SESSION['U_ID']))
+        $U_ID = $_SESSION['U_ID'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,5 +18,17 @@
 	<a href=../index.php>Share My House</a>
 	<br>Profil	
 	</h1>
+    <form method="post">
+        <label>Recherche :
+            <input name="pseudo">
+        </label>
+    </form>
+<?php
+    if (!empty($_POST['pseudo'])) {
+        //vérifier que l'utilisateur existe
+    } 
+    $pseudo = mysqli_real_escape_string($pseudo);
+    $result = mysqli_query($idcom, 'SELECT * from Utilisateur WHERE ');
+?>
 </body>
 </html>

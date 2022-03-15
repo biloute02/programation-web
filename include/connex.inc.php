@@ -1,8 +1,8 @@
 <?php
-function connex($base,$param)
+function connex($param)
 {
 	include($param.".inc.php");
-	$idcom=mysqli_connect(MYHOST,MYUSER,MYPASS,$base);
+	$idcom=mysqli_connect(MYHOST,MYUSER,MYPASS,MYBASE);
 	if(!$idcom)
 	{
     echo "<script type=text/javascript>";
