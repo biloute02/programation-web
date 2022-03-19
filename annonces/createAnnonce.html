@@ -1,0 +1,92 @@
+<html>
+	<body>
+			<form method="post" action="createAnnonce.php">
+			
+			<!-- class Type logement -->
+			<div class="logement">
+			<p>
+			<label for="logement_select">Type de logement :</label>
+			<select name="logement" id="logement_select" name="logement">
+				<option value="">--Choisir une option--</option>
+				<option value="maison">Maison</option>
+				<option value="appart">Appartement</option>
+			</select>
+			</p>
+			</div>
+			
+			<!-- Class date debut/fin -->
+			<div class="date">
+			<p>
+			Periode de disponibilit&eacute; de votre logement :<br />
+			du
+			<input type="date" name="date_deb" value="">
+			au
+			<input type="date" name="date_fin" value="">
+			</p>
+			</div>
+			
+			<!-- class adresse -->
+			<div class="adresse">
+			<p>
+			<label for="adresse">Adresse</label>
+			<input type="text" id="adresse" name="adresse">
+			</p>
+			</div>
+			
+			<!-- class ville -->
+			<div class="ville">
+			<p>
+			<label for="ville">Ville</label>
+			<input type="text" id="ville" name="ville">
+			</p>
+			</div>
+			
+			<!-- class Code Postale -->
+			<div class="CP">
+			<p>
+			<label for="CP">Code Postale</label>
+			<input type="text" id="CP" name="CP">
+			</p>
+			</div>
+			
+			<!-- class Pays -->
+			<div class="pays">
+			<p>
+			<label for="pays">Pays</label>
+			<input type="text" id="pays" name="pays">
+			</p>
+			</div>
+			
+			<!-- class Prix -->
+			<div class="prix">
+			<p>
+			<label for="prix">Prix</label>
+			<input type="text" id="prix" name="prix"> &euro;
+			</p>
+			</div>
+			
+			<!-- class Surface -->
+			<div class="surface">
+			<p>
+			<label for="surface">Surface</label>
+			<input type="text" id="surface" name="surface"> m<sup>2</sup>	
+			</p>
+			</div>
+			
+			<!-- class pieces -->
+			<div class="pieces">
+			<p>
+			<label for="pieces">Nombre de Pi&egrave;ces</label>
+			<input type="text" id="pieces" name="pieces">	
+			</p>
+			</div>
+			
+			<!-- class Envoie -->
+			<div class="Envoie">
+			<p>
+			<input type="submit" value="Publier">
+			</p>
+			</div>
+
+	</body>
+</html>
