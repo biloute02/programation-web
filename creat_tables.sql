@@ -1,6 +1,6 @@
 CREATE TABLE Utilisateur (
-    U_ID char(10),
-    email varchar(30),
+    U_ID int AUTO_INCREMENT,
+    email varchar(30) NOT NULL,
     mdp varchar(30) NOT NULL,
     pseudo varchar(15) NOT NULL,
     nom varchar(50),
@@ -13,7 +13,7 @@ CREATE TABLE Utilisateur (
 CREATE TABLE Photo (
     P_ID char(15),
     path char(100),
-    U_ID char(10) NOT NULL,
+    U_ID int NOT NULL,
     FOREIGN KEY(U_ID) REFERENCES Utilisateur(U_ID),
     PRIMARY KEY(P_ID)
 );
@@ -36,7 +36,7 @@ CREATE TABLE Annonce(
 
 
 CREATE TABLE reserve(
-    U_ID CHAR(50),
+    U_ID int,
     A_ID CHAR(50),
     statut_res VARCHAR(15),
     PRIMARY KEY(U_ID, A_ID),
@@ -45,7 +45,7 @@ CREATE TABLE reserve(
 );
 
 CREATE TABLE poste(
-    U_ID CHAR(10),
+    U_ID int,
     A_ID CHAR(15),
     date_post DATE,
     FOREIGN KEY(U_ID) REFERENCES Utilisateur(U_ID),
@@ -62,8 +62,8 @@ CREATE TABLE illustre(
 );
 
 CREATE TABLE communiquer(
-    U_ID_recoit CHAR(10),
-    U_ID_envoie CHAR(10),
+    U_ID_recoit int,
+    U_ID_envoie int,
     date_envoi DATE,
     contenu_message VARCHAR(250),
     FOREIGN KEY(U_ID_recoit) REFERENCES Utilisateur(U_ID),
@@ -72,8 +72,8 @@ CREATE TABLE communiquer(
 );
 
 CREATE TABLE evaluer(
-    U_ID_est_evalue CHAR(10),
-    U_ID_evalue CHAR(10),
+    U_ID_est_evalue int,
+    U_ID_evalue int,
     note INT,
     contenu_eval VARCHAR(300),
     FOREIGN KEY(U_ID_est_evalue) REFERENCES Utilisateur(U_ID),
