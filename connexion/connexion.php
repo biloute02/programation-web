@@ -1,5 +1,5 @@
 <?php
-include "../include/myparam.inc.php";
+include "param_mysql.php";
 session_start();
 
 if (isset($_POST['connexion'])) {
@@ -8,14 +8,13 @@ if (isset($_POST['connexion'])) {
 	if ($email && $password) {
 		$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
 
-		$test = mysqli_query($connect, "SELECT adressemail FROM utilisateur WHERE adressemail = '$email' AND password = '$password'");
+		$test = mysqli_query($connect, "SELECT * FROM utilisateur WHERE email = '$email' AND mdp = '$password'");
 
-		if (mysqli_num_rows($test)) die("L'adresse mail ou le mot de passe est incorrect");
-
-		$_SESSION['adressemail'] = $email;
-		$pseudo = mysqli_query($connect, "SELECT pseudo FROM utilisateur WHERE adressemail = '$email'");
-
-		echo "Vous être bien connecté $pseudo";
+		if (mysqli_num_rows($test) == 1) {
+		$_SESSION['email'] = $email;
+		echo("Vous êtes connectés "); die($_SESSION['email']);
+		}
+		else die("L'adresse mail ou le mot de passe est incorrect."); 
 
 	}
 	else echo "Veuillez renseigner le ou les champs manquant";
