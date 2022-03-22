@@ -3,9 +3,8 @@ include "param_mysql.php";
 session_start();
 
 if (isset($_POST['connexion'])) {
-	define("pseudo", "");
 
-	error_reporting (E_ALL ^ E_NOTICE);
+	//error_reporting (E_ALL ^ E_NOTICE);
 
 	$email = htmlentities($_POST['email'], ENT_QUOTES, "UTF-8"); // ENT_QUOTES -> pour les guillemets simple et double
 	$password = htmlentities($_POST['password'], ENT_QUOTES, "UTF-8");
@@ -22,8 +21,8 @@ if (isset($_POST['connexion'])) {
 
 		if (mysqli_num_rows($test) == 1) {
 		$_SESSION['email'] = $email;
-		$_SESSION['U_ID'] = $U_ID;
-		$_SESSION['pseudo'] = $lpseudo[pseudo];
+		$_SESSION['U_ID'] = $U_ID['U_ID'];
+		$_SESSION['pseudo'] = $lpseudo['pseudo'];
 
 		die("Vous êtes connectés $lpseudo[pseudo]");
 		}
