@@ -4,14 +4,14 @@ session_start();
 
 if (isset($_POST['connexion'])) {
 
-	//error_reporting (E_ALL ^ E_NOTICE);
-
-	$email = htmlentities($_POST['email'], ENT_QUOTES, "UTF-8"); // ENT_QUOTES -> pour les guillemets simple et double
-	$password = htmlentities($_POST['password'], ENT_QUOTES, "UTF-8");
+	$email = htmlentities(trim($_POST['email'])); 
+	$password = htmlentities(trim($_POST['password']));
 	if ($email && $password) {
 		$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
+		$passhash = password_hash($password, PASSWORD_DEFAULT);
+		$test = mysqli_query($connect, "SELECT * FROM utilisateur WHERE email = '$email'");
 
-		$test = mysqli_query($connect, "SELECT * FROM utilisateur WHERE email = '$email' AND mdp = '$password'");
+		if (mysqli_num_rows($test) == 1 && password_verify($password, $passhash)) {
 
 		$lpseudo = mysqli_query($connect, "SELECT pseudo FROM utilisateur WHERE email ='$email'");
 		$lpseudo = $lpseudo->fetch_array(1);
@@ -19,11 +19,11 @@ if (isset($_POST['connexion'])) {
 		$U_ID = mysqli_query($connect, "SELECT U_ID FROM utilisateur WHERE email ='$email'");
 		$U_ID = $U_ID->fetch_array(1);
 
-		if (mysqli_num_rows($test) == 1) {
 		$_SESSION['email'] = $email;
 		$_SESSION['U_ID'] = $U_ID['U_ID'];
 		$_SESSION['pseudo'] = $lpseudo['pseudo'];
 
+		echo'<a href="../Index.php">Retour à la page d accueil </a> <br>';
 		die("Vous êtes connectés $lpseudo[pseudo]");
 		}
 		else die("L'adresse mail ou le mot de passe est incorrect."); 

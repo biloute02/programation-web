@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère le
 		if($username && $password && $password1 && $emailadress && $nomfamille && $prenom && $naissance){ // Si tout les champs sont remplies 
 			if(filter_var($emailadress, FILTER_VALIDATE_EMAIL)){ // Regarde si l'adresse mail est valide
 				if ($password==$password1) { // Si les deux mots de passes sont identiques
+					$passhash = password_hash($password, PASSWORD_DEFAULT); //Per de hacher le mot de passe
 					$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
 
 					$test = mysqli_query($connect, "SELECT * FROM utilisateur WHERE email = '$emailadress'");
@@ -21,9 +22,10 @@ if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère le
 					if (mysqli_num_rows($test) >= 1) die("L'adresse mail est déjà utilisée");
 					
 					$annaissance = date('Y-m-d', strtotime($naissance));
-					$query = mysqli_query($connect, "INSERT INTO utilisateur VALUES( null, '$emailadress','$password', '$username', '$nomfamille', '$prenom', '$annaissance')"); // Insère les éléments dans la base de données
+					$query = mysqli_query($connect, "INSERT INTO utilisateur VALUES( null, '$emailadress','$passhash', '$username', '$nomfamille', '$prenom', '$annaissance')"); // Insère les éléments dans la base de données
 
-					die("Inscription terminé <a href='connexion.php'> connectez </a> vous"); // L'inscription est terminée
+					echo'<a href="../Index.php">Retour à la page d accueil </a> <br>';
+					die("Inscription terminé <a href='connexion.php'> connectez vous </a>"); // L'inscription est terminée
 
 				}
 				else echo "Les deux mots de passe ne sont pas identique"; // Les deux mdp sont différents
