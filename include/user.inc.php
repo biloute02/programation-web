@@ -1,9 +1,15 @@
 <?php
-function connected($R_U_ID)
+include_once('../include/connex.inc.php');
+
+function connected()
 {
 	if (!empty($_SESSION['U_ID']))
-		if ($R_U_ID == $_SESSION['U_ID'])
-			return true;
-	return false;
+		return $_SESSION['U_ID'];
+	return 0;
+}
+
+function moyenneNote($U_ID)
+{
+	
 }
 ?>

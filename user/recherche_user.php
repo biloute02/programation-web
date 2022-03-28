@@ -31,18 +31,16 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="recherche_profil.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Recherche Profil</title>
+	<title>Recherche Utilisateur</title>
 </head>
 <body>
 	<h1 style="text-align:center;">
 	<a href=../index.php>Share My House</a>
 	</h1>
-	<h2>Recherhe Utilisateur</h2>
+	<h2>Recherche Utilisateur</h2>
     <form method="post" action="recherche_user.php">
 		<button name="R_U_ID" value="<?php ; ?>">mon profil</button>
-        <label>Recherche :
-            <input type="search" name="pseudo">
-        </label>
+		<input type="search" name="pseudo" placeholder="Rechercher" accesskey="s">
 		<button type="submit">OK</button>
     </form>
 <?php
