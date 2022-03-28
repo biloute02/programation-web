@@ -6,6 +6,7 @@ CREATE TABLE Utilisateur (
     nom varchar(50),
     prenom varchar(50),
     date_naissance DATE,
+    date_inscription DATE,
     PRIMARY KEY(U_ID),
     UNIQUE(email)
 );

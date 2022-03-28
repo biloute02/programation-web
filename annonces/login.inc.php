@@ -1,5 +1,5 @@
 <?php
-define("MYHOST", "localhost") ;
-define("MYUSER", "upjv") ;
-define("MYPASS", "upjv2021") ;
+define("MYHOST", "10.1.16.236") ;
+define("MYUSER", "clementmargotin") ;
+define("MYPASS", "mysql") ;
 ?>
