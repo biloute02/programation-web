@@ -20,7 +20,7 @@
 	<p><a href='connexion/deconnexion.php'>deconnexion</a>
 	<p><a href='connexion/register.php'>register</a>
 	<p><a href='annonces/createAnnonce.html'>createAnnonce</a>
-	<p><a href='messagerie/message.php'>Envoyer un message</a>
+	<p><a href='messagerie/envoie.php'>Envoyer un message</a>
 </body>
 </html>
 
