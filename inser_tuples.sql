@@ -18,7 +18,7 @@ INSERT INTO Photo(P_ID, chemin) values (10, './photos/salon_creuse.jpg');
 INSERT INTO Annonce(A_ID, statut, type_logement, date_deb, date_fin, adresse, ville, cp, pays, contenu_annonce, prix, surface, nb_pieces) values(1, 'passée', 'appartement', TO_DATE('05/07/2021', 'DD/MM/YYYY'), TO_DATE('31/07/2021', 'DD/MM/YYYY'), '8 boulevard Dumas', 'Paris', '75016', 'France', "Charmant appartement haussmanien en plein coeur du 16ème arrondissement de Paris, idéal pour découvrir la ville. Situé au troisième étage avec ascenseur, l’appartement est calme et lumineux.
 Possibilité d’accueillir jusqu’à 6 personnes grâce aux 2 chambres équipées de lits doubles et au canapé-lit dans la salle de séjour.
 
-Cuisine équipée, télévision et wifi à disposition, tout est prévu pour que vous passiez un séjour idéal.
+Cuisine équipée, télévision et WiFi à disposition, tout est prévu pour que vous passiez un séjour idéal.
 
 Animaux non autorisés.", 70, 90, 3);
 INSERT INTO Annonce(A_ID, statut, type_logement, date_deb, date_fin, adresse, ville, cp, pays, contenu_annonce, prix, surface, nb_pieces) values(2, 'en cours', 'maison', TO_DATE('16/04/2022', 'DD/MM/YYYY'), TO_DATE('30/04/2022', 'DD/MM/YYYY'), '23 rue des Crocs', 'Saint-Pardoux-Morterolles', '23227', 'France', "Maison de campagne familiale. 4 chambres, 6 couchages (3 lits doubles, 1 lit superposé), 2 salles de bain. Terrain de 1 hectare. Animaux autorisés.", 50, 120, 5);
