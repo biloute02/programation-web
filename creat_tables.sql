@@ -13,7 +13,7 @@ CREATE TABLE Utilisateur (
 
 CREATE TABLE Photo (
     P_ID char(15),
-    path char(100),
+    chemin char(100),
     U_ID int NOT NULL,
     FOREIGN KEY(U_ID) REFERENCES Utilisateur(U_ID),
     PRIMARY KEY(P_ID)
@@ -65,7 +65,7 @@ CREATE TABLE illustre(
 CREATE TABLE communiquer(
     U_ID_recoit int,
     U_ID_envoie int,
-    date_envoi DATE,
+    date_envoi DATE TIME,
     contenu_message VARCHAR(250),
     FOREIGN KEY(U_ID_recoit) REFERENCES Utilisateur(U_ID),
     FOREIGN KEY(U_ID_envoie) REFERENCES Utilisateur(U_ID),
