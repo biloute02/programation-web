@@ -4,8 +4,8 @@ session_start();
 
 if (isset($_POST['connexion'])) {
 
-	$email = htmlentities(trim($_POST['email'])); 
-	$password = htmlentities(trim($_POST['password']));
+	$email = htmlentities(trim($_POST['email']), ENT_QUOTES, "UTF-8"); 
+	$password = htmlentities(trim($_POST['password']), ENT_QUOTES, "UTF-8");
 	if ($email && $password) {
 		$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
 		$passhash = password_hash($password, PASSWORD_DEFAULT);

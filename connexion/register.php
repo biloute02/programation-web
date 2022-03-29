@@ -3,13 +3,13 @@
 include "param_mysql.php";
 
 if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère les données de l'utilisateur
-	$username = htmlentities(trim($_POST['username']));
-	$password = htmlentities(trim($_POST['password']));
-	$password1 = htmlentities(trim($_POST['password1']));
-	$emailadress = htmlentities(trim($_POST['email']));
-	$nomfamille = htmlentities(trim($_POST['family']));
-	$prenom = htmlentities(trim($_POST['name']));
-	$naissance = htmlentities(trim($_POST['birth']));
+	$username = htmlentities(trim($_POST['username']), ENT_QUOTES, "UTF-8");
+	$password = htmlentities(trim($_POST['password']), ENT_QUOTES, "UTF-8");
+	$password1 = htmlentities(trim($_POST['password1']), ENT_QUOTES, "UTF-8");
+	$emailadress = htmlentities(trim($_POST['email']), ENT_QUOTES, "UTF-8");
+	$nomfamille = htmlentities(trim($_POST['family']), ENT_QUOTES, "UTF-8");
+	$prenom = htmlentities(trim($_POST['name']), ENT_QUOTES, "UTF-8");
+	$naissance = htmlentities(trim($_POST['birth']), ENT_QUOTES, "UTF-8");
 
 		if($username && $password && $password1 && $emailadress && $nomfamille && $prenom && $naissance){ // Si tout les champs sont remplies 
 			if(filter_var($emailadress, FILTER_VALIDATE_EMAIL)){ // Regarde si l'adresse mail est valide
