@@ -6,8 +6,8 @@
 			<div class="logement">
 			<p>
 			<label for="logement_select">Type de logement :</label>
-			<select name="logement" id="logement_select" name="logement">
-				<option value="">--Choisir une option--</option>
+			<select name="logement" id="logement_select" name="logement" required>
+				<option value="" disabled selected>--Choisir une option--</option>
 				<option value="maison">Maison</option>
 				<option value="appart">Appartement</option>
 			</select>
@@ -19,9 +19,9 @@
 			<p>
 			Periode de disponibilit&eacute; de votre logement :<br />
 			du
-			<input type="date" name="date_deb" value="">
+			<input type="date" name="date_deb" value="" required>
 			au
-			<input type="date" name="date_fin" value="">
+			<input type="date" name="date_fin" value="" required>
 			</p>
 			</div>
 			
@@ -29,7 +29,7 @@
 			<div class="adresse">
 			<p>
 			<label for="adresse">Adresse</label>
-			<input type="text" id="adresse" name="adresse">
+			<input type="text" id="adresse" name="adresse" required>
 			</p>
 			</div>
 			
@@ -37,7 +37,7 @@
 			<div class="ville">
 			<p>
 			<label for="ville">Ville</label>
-			<input type="text" id="ville" name="ville">
+			<input type="text" id="ville" name="ville" required>
 			</p>
 			</div>
 			
@@ -45,7 +45,7 @@
 			<div class="CP">
 			<p>
 			<label for="CP">Code Postale</label>
-			<input type="text" id="CP" name="CP">
+			<input type="number" id="CP" name="CP" required>
 			</p>
 			</div>
 			
@@ -53,7 +53,7 @@
 			<div class="pays">
 			<p>
 			<label for="pays">Pays</label>
-			<input type="text" id="pays" name="pays">
+			<input type="text" id="pays" name="pays" required>
 			</p>
 			</div>
 			
@@ -61,7 +61,7 @@
 			<div class="prix">
 			<p>
 			<label for="prix">Prix</label>
-			<input type="text" id="prix" name="prix"> &euro;
+			<input type="number" id="prix" name="prix" required> &euro;
 			</p>
 			</div>
 			
@@ -69,7 +69,7 @@
 			<div class="surface">
 			<p>
 			<label for="surface">Surface</label>
-			<input type="text" id="surface" name="surface"> m<sup>2</sup>	
+			<input type="number" id="surface" name="surface" required> m<sup>2</sup>	
 			</p>
 			</div>
 			
@@ -77,7 +77,7 @@
 			<div class="pieces">
 			<p>
 			<label for="pieces">Nombre de Pi&egrave;ces</label>
-			<input type="text" id="pieces" name="pieces">	
+			<input type="number" id="pieces" name="pieces" required>	
 			</p>
 			</div>
 			
@@ -85,14 +85,14 @@
 			<div class="photo">
 			<p>
 			<label for="photo">Photos : </label>
-			<input type="file" id="photo" name="photo" accept="image/png, image/jpeg" multiple>
+			<input type="file" id="photo" name="photo" accept="image/png, image/jpeg" required multiple>
 			</p>
 			</div>
 			
 			<!-- class Envoie -->
 			<div class="Envoie">
 			<p>
-			<input type="submit" name="submit" value="Publier">
+			<input type="submit" name="submit" value="Publier" required>
 			</p>
 			</div>
 
