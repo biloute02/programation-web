@@ -8,7 +8,7 @@
 		$_SESSION['R_U_ID'] = $_POST['R_U_ID'];
 		header("Location: ./user.php");
 	}
-	
+
 	// si le pseudo a été renseigné
 	if (!empty($_POST['pseudo'])) {
 		$pseudo = mysqli_real_escape_string($idcom, $_POST['pseudo']);
@@ -23,6 +23,7 @@
 			header("Location: ./user.php");
 		// le else continue en dessous !
 		}
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,27 +31,25 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="recherche_profil.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Recherche Profil</title>
+	<title>Recherche Utilisateur</title>
 </head>
 <body>
 	<h1 style="text-align:center;">
 	<a href=../index.php>Share My House</a>
 	</h1>
-	<h2>Recherhe Utilisateur</h2>
-	<!--accéder au profil en rechargeant la page-->
-	<p><a href="">mon profil</a></p>
+	<h2>Recherche Utilisateur</h2>
     <form method="post" action="recherche_user.php">
-        <label>Recherche :
-            <input type="search" name="pseudo">
-        </label>
+		<button name="R_U_ID" value="<?php ; ?>">mon profil</button>
+		<input type="search" name="pseudo" placeholder="Rechercher" accesskey="s">
 		<button type="submit">OK</button>
     </form>
 <?php
+	if (isset($result)) {
 		if (count($result) > 1) {
 			echo "<p>Plusieurs résultats possibles pour <b>".$pseudo."</b></p>";
 			echo '<form method="post"><ul>';
 			foreach ($result as $row) {
-				echo '<li><button name="R_U_ID" value="'.$row["U_ID"].'" type="submit">';
+				echo '<li><button name="R_U_ID" value="'.$row["U_ID"].'">';
 				printf("%s %s", ucfirst($row['nom']), ucfirst($row['prenom']));
 				echo '</button></li>';
 			}

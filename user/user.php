@@ -1,10 +1,16 @@
 <?php
 	session_start();
 	include_once('../include/connex.inc.php');
+	include_once('../include/user.inc.php');
 	$idcom = connex("myparam");
 	
 	if (!empty($_SESSION['R_U_ID'])) {
 		$R_U_ID = $_SESSION['R_U_ID'];
+		$query = "SELECT * FROM Utilisateur WHERE U_ID = '$R_U_ID'";
+		$result = mysqli_query($idcom, $query);
+		$result = mysqli_fetch_array($result, MYSQLI_BOTH);
+	} else {
+		
 	}
 ?>
 <!DOCTYPE html>
@@ -17,51 +23,50 @@
 </head>
 <body>
 	<h1 style="text-align:center;">
-	<a href=../index.php>Share My House</a>
+		<a href=../index.php>Share My House</a>
 	</h1>
-	<h2>Profil</h2>
-	<!--accéder au profil en rechargeant la page-->
-	<p><a href="">mon profil</a></p>
+	<!--accéder au profil en rechargeant la page
+	<p><a href="">mon profil</a></p>-->
     <form method="post" action="recherche_user.php">
-        <label>Recherche :
-            <input type="search" name="pseudo">
-        </label>
+		<input type="search" name="pseudo" placeholder="Rechercher" accesskey="s">
 		<button type="submit">OK</button>
     </form>
-<?php
-	/*
-	// si U_ID n'existe pas, on essaye de le déterminer
-	if (empty($_POST['U_ID'])) {
-		// si le pseudo est renseigné dans la barre de recherche, on récupère son $U_ID
-	} else {
-		$U_ID = $_POST['U_ID'];
-	}
-	 */
-?>
 
 <?php
-	// si R_U_ID existe, on affiche la page d'utilisateur
-	if (!empty($R_U_ID)) {
-		$query = "SELECT * FROM Utilisateur WHERE U_ID = '$R_U_ID'";
-		$result = mysqli_query($idcom, $query);
-		$result = mysqli_fetch_array($result, MYSQLI_BOTH);
-		// cas où on regarde son profil
-		if (!empty($_SESSION['U_ID']) && $_SESSION['U_ID'] == $R_U_ID) {
-			echo "<p>Votre profil :</p>";
-			echo "<ul>";
-			printf("<li>email : %s<br>pseudo : %s</li>", $result['email'], $result['pseudo']);
-			printf("<li>prénom : %s<br>nom : %s</li>", $result['prenom'], $result['nom']);
-			printf("<li>date de naissance : %s</li>", $result['date_naissance']);
-			echo "</ul>";
-			echo "<p>Vos annonces</p>";
-		// cas où on recherche un autre utilisateur
-		} else {
-			echo "<p>Profil de <b>".$result['pseudo']."</b></p>";
-			echo "<ul>";
-			printf("<li>email : %s<br>pseudo : %s</li>", $result['email'], $result['pseudo']);
-			echo "</ul>";
-			echo "<p>Ses annonces</p>";
-		}
+	if (isset($result)) {
+		if (connected() == $R_U_ID)
+			echo "<h2>Votre profil <i>".$result['pseudo']." :</i></h2>";
+		else
+			echo "<h2>Profil de <i>".$result['pseudo']." :</i></h2>";
+?>
+	<h2>Informations</h2>
+		<ul>
+			<?php
+			if (connected() == $R_U_ID) {
+				printf("<li>email : %s</li>", $result['email']);
+				printf("<li>date de naissance : %s</li>", $result['date_naissance']);
+			}
+			printf("<li>prénom : %s</li>", $result['prenom']);
+			printf("<li>nom : %s</li>", $result['nom']);
+			?>
+		</ul>
+	<h2>Notes</h2>
+		<p>Moyenne : ###</p>
+		<?php if (connected() && connected() != $R_U_ID) { ?>
+		<form method="post" action="note_user.php">
+			<input type="number" name="note" placeholder="note" min="1" max="5" required>
+			<br><textarea name="com" placeholder="commentaire" 
+					rows="6" cols="60" maxlength="250" required></textarea>
+			<br><button type="submit">OK</button>
+		</form>
+		<?php } ?>		
+	<h2>Annonces</h2>
+		<ul>
+
+		</ul>
+<?php
+	} else {
+
 	}
 ?>
 </body>
