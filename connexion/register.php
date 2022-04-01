@@ -14,19 +14,23 @@ if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère le
 		if($username && $password && $password1 && $emailadress && $nomfamille && $prenom && $naissance){ // Si tout les champs sont remplies 
 			if(filter_var($emailadress, FILTER_VALIDATE_EMAIL)){ // Regarde si l'adresse mail est valide
 				if ($password==$password1) { // Si les deux mots de passes sont identiques
-					$passhash = password_hash($password, PASSWORD_DEFAULT); //Permet de hacher le mot de passe
-					$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
-
-					$test = mysqli_query($connect, "SELECT * FROM utilisateur WHERE email = '$emailadress'");
-
-					if (mysqli_num_rows($test) >= 1) die("L'adresse mail est déjà utilisée");
+					if (preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/", $password)) {
 					
-					$annaissance = date('Y-m-d', strtotime($naissance));
-					$query = mysqli_query($connect, "INSERT INTO utilisateur VALUES( null, '$emailadress','$passhash', '$username', '$nomfamille', '$prenom', '$annaissance', now())"); // Insère les éléments dans la base de données
+						$passhash = password_hash($password, PASSWORD_DEFAULT); //Permet de hacher le mot de passe
+						$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
 
-					echo'<a href="../Index.php">Retour à la page d accueil </a> <br>';
-					die("Inscription terminé <a href='connexion.php'> connectez vous </a>"); // L'inscription est terminée
+						$test = mysqli_query($connect, "SELECT * FROM utilisateur WHERE email = '$emailadress'");
 
+						if (mysqli_num_rows($test) >= 1) die("L'adresse mail est déjà utilisée");
+						
+						$annaissance = date('Y-m-d', strtotime($naissance));
+						$query = mysqli_query($connect, "INSERT INTO utilisateur VALUES( null, '$emailadress','$passhash', '$username', '$nomfamille', '$prenom', '$annaissance', now())"); // Insère les éléments dans la base de données
+
+						echo'<a href="../Index.php">Retour à la page d accueil </a> <br>';
+						die("Inscription terminé <a href='connexion.php'> connectez vous </a>"); // L'inscription est terminée
+
+					}
+					else echo "<b>Votre mot de passe doit contenir entre 8 et 16 caractères, une majuscule, une minuscule et un chiffre !</b>"; //le mdp ne correspond pas
 				}
 				else echo "Les deux mots de passe ne sont pas identique"; // Les deux mdp sont différents
 			}
@@ -48,7 +52,7 @@ if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère le
 	<input type="text" name="name">
 	<p>Votre date de naissance:</p>
 	<input type="date" name="birth">
-	<p>Votre mot de passe:</p>
+	<p>Votre mot de passe (8 à 16 caractères, 1 majuscule, 1 minuscule, 1 chiffre):</p>
 	<input type="password" name="password">
 	<p>Confirmation de votre mot de passe:</p>
 	<input type="password" name="password1">
