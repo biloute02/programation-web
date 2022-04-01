@@ -24,9 +24,3 @@
 </body>
 </html>
 
-<!-- Faire index avec connexion ou register
-	Une fois connecté on voit les annonces,
-	en haut à gauche, un menu déroulant
-	permettant d'ajouter des amis, de se déconnecter
-	d'acceder à son profil, des annonces etc
-/!-->
