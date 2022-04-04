@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include_once('../include/connex.inc.php');
+	include_once('../include/user.inc.php');
 	$idcom = connex("myparam");
 
 	// si l'utilisateur a été séléctionné
@@ -39,7 +40,9 @@
 	</h1>
 	<h2>Recherche Utilisateur</h2>
     <form method="post" action="recherche_user.php">
-		<button name="R_U_ID" value="<?php ; ?>">mon profil</button>
+		<?php affButtonProfil() ?>
+	</form>
+    <form method="post" action="recherche_user.php">
 		<input type="search" name="pseudo" placeholder="Rechercher" accesskey="s">
 		<button type="submit">OK</button>
     </form>
