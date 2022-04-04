@@ -1,6 +1,6 @@
 <?php
 
-include "param_mysql.php";
+include_once "param_mysql.php";
 
 if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère les données de l'utilisateur
 	$username = htmlentities(trim($_POST['username']), ENT_QUOTES, "UTF-8");
@@ -41,21 +41,24 @@ if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère le
 
 ?>
 
-<form method="POST" action="register.php">
-	<p>Votre adresse mail:</p>
-	<input type="text" name="email">
-	<p>Votre pseudo:</p>
-	<input type="text" name="username">
-	<p>Votre nom de famille:</p>
-	<input type="text" name="family">
-	<p>Votre prénom:</p>
-	<input type="text" name="name">
-	<p>Votre date de naissance:</p>
-	<input type="date" name="birth">
-	<p>Votre mot de passe (8 à 16 caractères, 1 majuscule, 1 minuscule, 1 chiffre):</p>
-	<input type="password" name="password">
-	<p>Confirmation de votre mot de passe:</p>
-	<input type="password" name="password1">
-	<br><br>
-	<input type="submit" value="Inscription" name="submit">
-</form>
+<body>
+	<link rel="stylesheet" type="text/css" href="connex.css">
+	<form method="POST" action="register.php">
+		<p>Votre adresse mail:</p>
+		<input type="text" name="email">
+		<p>Votre pseudo:</p>
+		<input type="text" name="username">
+		<p>Votre nom de famille:</p>
+		<input type="text" name="family">
+		<p>Votre prénom:</p>
+		<input type="text" name="name">
+		<p>Votre date de naissance:</p>
+		<input type="date" name="birth">
+		<p>Votre mot de passe (8 à 16 caractères, 1 majuscule, 1 minuscule, 1 chiffre):</p>
+		<input type="password" name="password">
+		<p>Confirmation de votre mot de passe:</p>
+		<input type="password" name="password1">
+		<br><br>
+		<input type="submit" value="Inscription" name="submit">
+	</form>
+</body>

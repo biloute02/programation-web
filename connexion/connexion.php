@@ -1,5 +1,5 @@
 <?php
-include "param_mysql.php";
+include_once "param_mysql.php";
 session_start();
 
 if (isset($_POST['connexion'])) {
@@ -34,11 +34,14 @@ if (isset($_POST['connexion'])) {
 
 ?>
 
-<form action="connexion.php" method="post">
-	<p>Votre adresse mail:</p>
-    <input type="text" name="email">
-    <p>Votre Mot de passe:</p>
-    <input type="password" name="password">
-    <br><br>
-    <input type="submit" name="connexion" value="Connexion" />
-</form>
+<body>
+	<link rel="stylesheet" type="text/css" href="connex.css">
+	<form action="connexion.php" method="post">
+		<p>Votre adresse mail:</p>
+	    <input type="text" name="email">
+	    <p>Votre Mot de passe:</p>
+	    <input type="password" name="password">
+	    <br><br>
+	    <input type="submit" name="connexion" value="Connexion" />
+	</form>
+</body>
