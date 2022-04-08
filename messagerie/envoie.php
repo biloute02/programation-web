@@ -30,7 +30,6 @@
 			}
 		} 
 
-	else echo "Vous n'avez pas de messages avec cette personne";
 
 	if (isset($_POST['envoie'])) {
 		if (!$message) echo "<br><b>Veuillez entrer un message</b><br>";

@@ -23,8 +23,12 @@ if (isset($_POST['connexion'])) {
 		$_SESSION['U_ID'] = $U_ID['U_ID'];
 		$_SESSION['pseudo'] = $lpseudo['pseudo'];
 
-		echo'<a href="../Index.php">Retour à la page d accueil </a> <br>';
-		die("Vous êtes connectés $lpseudo[pseudo]");
+		$page = "../index.php";
+		if(!empty($_SESSION['page'])){
+			$page = $_SESSION['page'];
+			unset($_SESSION['page']);
+		}
+		header("Location:" . $page);
 		}
 		else die("L'adresse mail ou le mot de passe est incorrect."); 
 
