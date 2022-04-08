@@ -76,7 +76,7 @@ CREATE TABLE evaluer(
     U_ID_est_evalue int,
     U_ID_evalue int,
     note INT,
-    contenu_eval VARCHAR(300),
+    contenu_eval TEXT,
     FOREIGN KEY(U_ID_est_evalue) REFERENCES Utilisateur(U_ID),
     FOREIGN KEY(U_ID_evalue) REFERENCES Utilisateur(U_ID),
     PRIMARY KEY(U_ID_est_evalue, U_ID_evalue)
