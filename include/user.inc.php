@@ -19,6 +19,7 @@ function affButtonProfil() {
 		echo '<button name="R_U_ID" value="' . $_SESSION['U_ID'] . '">mon profil</button>';
 	} else {
 		$_SESSION['page'] = $_SERVER['SCRIPT_NAME'];
+		echo '<p>' . $_SESSION['page'] . '</p>';
 		echo '<button type="button">';
 		echo '<a href="../connexion/connexion.php">mon profile : connexion</a>';
 		echo '</button>';
@@ -34,21 +35,22 @@ function affAvis($idcom, $R_U_ID, $U_ID) {
 }*/
 
 function affAvisAll($idcom, $R_U_ID) {
-	$query = "SELECT U_ID_est_evalue, note, contenu_eval FROM evaluer WHERE U_ID_est_evalue = '$R_U_ID'";
+	$query = "SELECT U_ID_evalue, note, contenu_eval FROM evaluer WHERE U_ID_est_evalue = '$R_U_ID'";
 	$result = mysqli_query($idcom, $query);
 	$result = mysqli_fetch_all($result, MYSQLI_BOTH);
 
-	echo '<ol>';
+	echo '<dl>';	
 	foreach ($result as $row) {
-		echo '<li>';
-		echo '<ul  type="square">';	
-		foreach ($row as $att) {
-			echo '<li>' . $att . '</li>';
-		}
-		echo "</ul>";
-		echo '</li>';
+		$query = "SELECT pseudo FROM utilisateur WHERE U_ID = '" . $row['U_ID_evalue'] . "'";
+		$pseudo = mysqli_query($idcom, $query);
+		$pseudo = mysqli_fetch_array($pseudo);
+		echo '<div class=avis>';
+		echo '<dt><b>' . $pseudo['pseudo'] . '</b></dt>';
+		echo '<dd>' . $row['note'] . '</dd>';
+		echo '<dd>' . $row['contenu_eval'] . '</dd>';
+		echo "</div>";
 	}
-	echo '</ol>';
+	echo '</dl>';
 }
 
 ?>

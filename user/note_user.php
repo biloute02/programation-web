@@ -10,7 +10,15 @@
 			$U_ID = $_SESSION['U_ID'];
 			$note = $_POST['note'];
 			$com = mysqli_real_escape_string($idcom, $_POST['com']);
-			$query = "INSERT INTO evaluer VALUES ('$R_U_ID', '$U_ID', '$note', '$com')";
+			echo "<p>$com</p>";
+			$query = "SELECT * FROM evaluer WHERE U_ID_est_evalue = '$R_U_ID' AND U_ID_evalue = '$U_ID'";
+			$result = mysqli_query($idcom, $query);
+			$result = mysqli_fetch_all($result, MYSQLI_BOTH);
+			if (count($result) == 0) {
+				$query = "INSERT INTO evaluer VALUES ('$R_U_ID', '$U_ID', '$note', '$com')";
+			} else {
+				$query = "UPDATE evaluer SET note = '$note', contenu_eval = '$com' WHERE U_ID_est_evalue = '$R_U_ID' AND U_ID_evalue = '$U_ID'";
+			}
 			$result = mysqli_query($idcom, $query);
 		}
 	}
@@ -21,7 +29,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="user.css">
+	<link rel="stylesheet" type="text/css" href="note_user.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Note Utilisateur</title>
 </head>
