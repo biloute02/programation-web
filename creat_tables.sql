@@ -1,12 +1,12 @@
 CREATE TABLE Utilisateur (
     U_ID int AUTO_INCREMENT,
     email varchar(30) NOT NULL,
-    mdp varchar(30) NOT NULL,
+    mdp varchar(255) NOT NULL,
     pseudo varchar(15) NOT NULL,
     nom varchar(50),
     prenom varchar(50),
     date_naissance DATE,
-    date_inscription DATE,
+    date_inscription DATETIME,
     PRIMARY KEY(U_ID),
     UNIQUE(email)
 );
