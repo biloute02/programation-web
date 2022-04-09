@@ -21,20 +21,22 @@ CREATE TABLE Photo (
 
 CREATE TABLE Annonce(
     A_ID INT AUTO_INCREMENT,
+    U_ID INT,
     statut VARCHAR(15),
     type_logement VARCHAR(20),
     date_deb DATE,
     date_fin DATE,
+    date_post DATETIME,
     adresse VARCHAR(50),
     ville VARCHAR(50),
     cp CHAR(5),
     pays VARCHAR(50),
+    contenu_annonce TEXT,
     prix DECIMAL(6,2),
     surface INT,
     nb_pieces INT,
-    PRIMARY KEY(A_ID)
+    PRIMARY KEY(A_ID, U_ID)
 );
-
 
 CREATE TABLE reserve(
     U_ID int,
@@ -43,15 +45,6 @@ CREATE TABLE reserve(
     PRIMARY KEY(U_ID, A_ID),
     FOREIGN KEY(U_ID) REFERENCES Utilisateur(U_ID),
     FOREIGN KEY(A_ID) REFERENCES Annonce(A_ID)
-);
-
-CREATE TABLE poste(
-    U_ID int,
-    A_ID INT,
-    date_post DATE,
-    FOREIGN KEY(U_ID) REFERENCES Utilisateur(U_ID),
-    FOREIGN KEY(A_ID) REFERENCES Annonce(A_ID),
-    PRIMARY KEY(U_ID, A_ID)
 );
 
 CREATE TABLE illustre(
