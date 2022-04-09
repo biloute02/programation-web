@@ -23,5 +23,13 @@
 		echo "Nombre de pièces : " . $row['nb_pieces'] . "<br>";
 		echo "Description : " . $row['contenu_annonce'];
 
+		$query1 = mysqli_query($connect, "SELECT chemin FROM photo WHERE P_ID IN(SELECT P_ID FROM illustre WHERE A_ID = $A_ID)");
+		echo "<br>";
+		$padding = 0;
+		while ($rows = mysqli_fetch_assoc($query1)){
+			if ($padding >= 1) echo'<span style="padding-left:30px;"><img height="400" width="400" src="../'.$rows['chemin']. '"></span>'; 
+			else echo'<img height="400" width="400" src="../'.$rows['chemin']. '">';
+			$padding++;
+		}	
 	}
 ?>	

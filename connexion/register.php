@@ -30,13 +30,13 @@ if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère le
 						die("Inscription terminé <a href='connexion.php'> connectez vous </a>"); // L'inscription est terminée
 
 					}
-					else echo "<b>Votre mot de passe doit contenir entre 8 et 16 caractères, une majuscule, une minuscule et un chiffre !</b>"; //le mdp ne correspond pas
+					else echo "<p><b>Votre mot de passe doit contenir entre 8 et 16 caractères, une majuscule, une minuscule et un chiffre !</b></p>"; //le mdp ne correspond pas
 				}
-				else echo "Les deux mots de passe ne sont pas identique"; // Les deux mdp sont différents
+				else echo "<p><b>Les deux mots de passe ne sont pas identique</b></p>"; // Les deux mdp sont différents
 			}
-			else echo "l'adresse email n'est pas valide"; // Adresse mail invalide
+			else echo "<p><b>l'adresse email n'est pas valide</b></p>"; // Adresse mail invalide
 		}
-		else echo "Veuillez renseigner tout les champs !"; // Il manque minimum un champs
+		else echo "<p><b>Veuillez renseigner tout les champs !</b></p>"; // Il manque minimum un champs
 }
 
 ?>

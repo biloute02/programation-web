@@ -31,7 +31,7 @@
 	//action si on veut retirer sa réservation
 	if (isset($_POST['retirer'])) {
 		if (count($result) != 0) {
-			$query = "DELETE FROM reserve WHERE A_ID = $A_ID AND U_ID = $U_ID";
+			$query = "DELETE FROM reserve WHERE A_ID = '$A_ID' AND U_ID = '$U_ID'";
 			mysqli_query($idcom, $query);
 			header("Location: reserver.php");
 		}
