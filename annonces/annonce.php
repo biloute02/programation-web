@@ -1,7 +1,19 @@
 <?php
+session_start();
 include_once "../include/annonce.inc.php";
-	session_start();
+$idutilisateur = $_SESSION['U_ID'];
+$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
+$query = mysqli_query($connect, "SELECT A_ID FROM annonce WHERE U_ID != '$idutilisateur'");
 
-	$ida = $_GET['id'];
-	afficherannonce($ida);
+$rows = mysqli_fetch_all($query);
+unset($_SESSION['ida']);
+
+if(!empty($rows)){
+	foreach ($rows as $row){
+		afficherannonce($row[0]);
+		echo "<br><a href='./reserver.php?id=$row[0]'>Voir cette annonce ? </a><br><br>";
+	}
+}
+
 ?>
+
