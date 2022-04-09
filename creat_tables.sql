@@ -20,22 +20,12 @@ CREATE TABLE Photo (
 );
 
 CREATE TABLE Annonce(
-<<<<<<< HEAD
-    A_ID INT AUTO_INCREMENT,
-    U_ID INT,
-    statut VARCHAR(15),
-    type_logement VARCHAR(20),
-    date_deb DATE,
-    date_fin DATE,
-    date_post DATETIME,
-=======
     A_ID int AUTO_INCREMENT,
     statut int,
     type_logement VARCHAR(20),
     date_deb DATE,
     date_fin DATE,
     date_post DATE,
->>>>>>> 3c65cc1a521c105a42b8cc4c8c0dc6aa615aaca4
     adresse VARCHAR(50),
     ville VARCHAR(50),
     cp CHAR(5),
@@ -44,14 +34,11 @@ CREATE TABLE Annonce(
     prix DECIMAL(6,2),
     surface INT,
     nb_pieces INT,
-<<<<<<< HEAD
-    PRIMARY KEY(A_ID, U_ID)
-=======
     U_ID int NOT NULL,
     FOREIGN KEY(U_ID) REFERENCES Utilisateur(U_ID),
     PRIMARY KEY(A_ID)
->>>>>>> 3c65cc1a521c105a42b8cc4c8c0dc6aa615aaca4
 );
+
 
 CREATE TABLE reserve(
     U_ID int,
