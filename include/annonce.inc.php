@@ -6,18 +6,22 @@
 
 		$row = $query->fetch_row();
 
-		printf("Statut : %s\n", $row[1]);
-		printf("Type de logement : %s\n", $row[2]);
-		printf("Date début : %d  |", $row[3]); //date à revérifier peut-être echo date("Y-m-d", $row[3])
-		printf("  Date fin : %d\n", $row[4]);
-		printf("Adresse : %s\n", $row[5]);
-		printf("Ville : %s\n", $row[6]);
-		printf("Code postale : %s\n", $row[7]);
-		printf("Pays : %s\n", $row[8]);
-		printf("Annonce : %s\n", $row[9]);
-		printf("Prix : %lf\n", $row[10]);
-		printf("surface : %d\n", $row[11]);
-		printf("Nombre de pièces : %d\n", $row[12]);
+		$row[3] = strtotime($row[3]); //Met les dates dans le bon format (ex : 2021 12 13 deviendra 13 12 2021)
+		$row[3] = date('d-m-Y', $row[3]);
+		$row[4] = strtotime($row[4]);
+		$row[4] = date('d-m-Y', $row[4]);
+
+		echo "Statut : $row[1] <br>";
+		echo "Type de logement : $row[2]<br>";		
+		echo "Date début : $row[3]<br>";		
+		echo "Date fin : $row[4]<br>";
+		echo "Adresse : $row[5]<br>";
+		echo "Ville : $row[6]<br>";
+		echo "Code postale : $row[7]<br>";
+		echo "Pays : $row[8]<br>";
+		echo "Prix : $row[9]<br>";
+		echo "surface : $row[10]<br>";
+		echo "Nombre de pièces : $row[11]";
 
 
 

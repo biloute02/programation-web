@@ -21,7 +21,6 @@ include 'connex.php';
 			$idcom = connex("clementmargotin", "login") or die("Erreur de connexion");
 			mysqli_query($idcom, $SQL_INSERT);
 			$oue = file_put_contents("../image", $photo);
-			1234567089
 			mysqli_close($idcom);
 		}
 	}

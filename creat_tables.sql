@@ -20,7 +20,7 @@ CREATE TABLE Photo (
 );
 
 CREATE TABLE Annonce(
-    A_ID char(15),
+    A_ID INT AUTO_INCREMENT,
     statut VARCHAR(15),
     type_logement VARCHAR(20),
     date_deb DATE,
@@ -38,7 +38,7 @@ CREATE TABLE Annonce(
 
 CREATE TABLE reserve(
     U_ID int,
-    A_ID CHAR(50),
+    A_ID INT,
     statut_res VARCHAR(15),
     PRIMARY KEY(U_ID, A_ID),
     FOREIGN KEY(U_ID) REFERENCES Utilisateur(U_ID),
@@ -47,7 +47,7 @@ CREATE TABLE reserve(
 
 CREATE TABLE poste(
     U_ID int,
-    A_ID CHAR(15),
+    A_ID INT,
     date_post DATE,
     FOREIGN KEY(U_ID) REFERENCES Utilisateur(U_ID),
     FOREIGN KEY(A_ID) REFERENCES Annonce(A_ID),
@@ -56,7 +56,7 @@ CREATE TABLE poste(
 
 CREATE TABLE illustre(
     P_ID CHAR(15),
-    A_ID CHAR(15),
+    A_ID INT,
     FOREIGN KEY(P_ID) REFERENCES Photo(P_ID),
     FOREIGN KEY(A_ID) REFERENCES Annonce(A_ID),
     PRIMARY KEY(P_ID, A_ID)
@@ -65,8 +65,8 @@ CREATE TABLE illustre(
 CREATE TABLE communiquer(
     U_ID_recoit int,
     U_ID_envoie int,
-    date_envoi DATE TIME,
-    contenu_message VARCHAR(250),
+    date_envoi DATETIME,
+    contenu_message TEXT,
     FOREIGN KEY(U_ID_recoit) REFERENCES Utilisateur(U_ID),
     FOREIGN KEY(U_ID_envoie) REFERENCES Utilisateur(U_ID),
     PRIMARY KEY(U_ID_recoit, U_ID_envoie, date_envoi)
