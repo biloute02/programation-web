@@ -4,27 +4,24 @@
 		$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
 		$query = mysqli_query($connect, "SELECT * FROM annonce WHERE A_ID = '$A_ID'");
 
-		$row = $query->fetch_row();
+		$row = $query->fetch_array();
 
-		$row[3] = strtotime($row[3]); //Met les dates dans le bon format (ex : 2021 12 13 deviendra 13 12 2021)
-		$row[3] = date('d-m-Y', $row[3]);
-		$row[4] = strtotime($row[4]);
-		$row[4] = date('d-m-Y', $row[4]);
+		$row['date_deb'] = strtotime($row['date_deb']); //Met les dates dans le bon format (ex : 2021 12 13 deviendra 13 12 2021)
+		$row['date_deb'] = date('d-m-Y', $row['date_deb']);
+		$row['date_fin'] = strtotime($row['date_fin']);
+		$row['date_fin'] = date('d-m-Y', $row['date_fin']);
 
-		echo "Statut : $row[1] <br>";
-		echo "Type de logement : $row[2]<br>";		
-		echo "Date début : $row[3]<br>";		
-		echo "Date fin : $row[4]<br>";
-		echo "Adresse : $row[5]<br>";
-		echo "Ville : $row[6]<br>";
-		echo "Code postale : $row[7]<br>";
-		echo "Pays : $row[8]<br>";
-		echo "Prix : $row[9]<br>";
-		echo "surface : $row[10]<br>";
-		echo "Nombre de pièces : $row[11]";
-
-
+		echo "Statut : ". $row['statut'] . "<br>";
+		echo "Type de logement : " . $row['type_logement'] . "<br>";		
+		echo "Date début : " . $row['date_deb'] . "<br>";		
+		echo "Date fin : " . $row['date_fin'] . "<br>";
+		echo "Adresse : " . $row['adresse'] . "<br>";
+		echo "Ville : " . $row['ville'] . "<br>";
+		echo "Code postale : " . $row['cp'] . "<br>";
+		echo "Pays : " . $row['pays'] . "<br>";
+		echo "Prix : " . $row['prix'] . "<br>";
+		echo "surface : " . $row['surface'] . "<br>";
+		echo "Nombre de pièces : " . $row['nb_pieces'];
 
 	}
-
 ?>	
