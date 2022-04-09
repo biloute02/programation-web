@@ -1,6 +1,5 @@
 <?php
-	include_once "../connexion/param_mysql.php";
-	function afficherannonce($A_ID){
+	function afficherannonce($idcom, $A_ID){
 		$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
 		$query = mysqli_query($connect, "SELECT * FROM annonce WHERE A_ID = '$A_ID'");
 

@@ -1,4 +1,7 @@
 <?php
+/* connection à une base de donnée avec les parmètres de connexion
+ * contenus dans $param
+ */
 function connex($param)
 {
 	include($param.".inc.php");
@@ -10,5 +13,23 @@ function connex($param)
 	}
 	return $idcom;
 }
-?>
 
+/* regarde si l'utilisateur est connecté
+ */
+function estConnecte()
+{
+	if (!empty($_SESSION['U_ID'])) {
+		return $_SESSION['U_ID'];
+	}
+	return 0;
+}
+
+/* connecte l'utilisateur en l'envoyant sur connexion.php et le ridirige
+ * sur la page où la fonction a été appelée
+ */
+function seConnecter()
+{
+		$_SESSION['page'] = $_SERVER['SCRIPT_NAME'];
+		Header("Location: ../connexion/connexion.php");
+}
+?>
