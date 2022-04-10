@@ -25,6 +25,7 @@ CREATE TABLE Photo (
 CREATE TABLE Annonce(
     A_ID int AUTO_INCREMENT,
     statut int,
+    titre VARCHAR(30),
     type_logement VARCHAR(20),
     date_deb DATE,
     date_fin DATE,
