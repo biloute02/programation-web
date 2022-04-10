@@ -18,7 +18,7 @@
 		echo "Code postale : " . $row['cp'] . "<br>";
 		echo "Pays : " . $row['pays'] . "<br>";
 		echo "Prix : " . $row['prix'] . "<br>";
-		echo "surface : " . $row['surface'] . "<br>";
+		echo "Surface : " . $row['surface'] . "<br>";
 		echo "Nombre de pièces : " . $row['nb_pieces'] . "<br>";
 		echo "Description : " . $row['contenu_annonce'];
 
@@ -51,7 +51,7 @@
 		echo "Code postale : " . $row['cp'] . "<br>";
 		echo "Pays : " . $row['pays'] . "<br>";
 		echo "Prix : " . $row['prix'] . "<br>";
-		echo "surface : " . $row['surface'] . "<br>";
+		echo "Surface : " . $row['surface'] . "<br>";
 		echo "Nombre de pièces : " . $row['nb_pieces'] . "<br>";
 	}
 ?>	
