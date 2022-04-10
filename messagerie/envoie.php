@@ -1,6 +1,11 @@
 <?php
-	session_start();
 	include_once "../connexion/param_mysql.php";
+	include_once "../include/connex.inc.php";
+	session_start();
+
+	if (!estConnecte())
+		seConnecter();
+
 	$idutilisateur = $_SESSION['U_ID'];
 	$iddestinataire = $_SESSION['R_U_ID'];
 	$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
