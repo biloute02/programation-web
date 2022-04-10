@@ -10,7 +10,7 @@
 
 	//$U_ID = $_SESSION['U_ID'];
 	$idcom = connex("myparam");
-	$query = "SELECT A_ID FROM annonce";
+	$query = "SELECT A_ID, statut FROM annonce";
 	//$query = "SELECT A_ID FROM annonce WHERE U_ID != '$U_ID'"
 	$result = mysqli_query($idcom, $query);
 	$result = mysqli_fetch_all($result, MYSQLI_BOTH);
@@ -33,11 +33,13 @@
 	if (!empty($result)) {
 		echo '<form method="post">';
 		foreach ($result as $row){
-			afficherannonce($idcom, $row['A_ID']);
-			echo '<br>';
-			echo '<button name="A_ID" value="' . $row['A_ID'] . '">';
-			echo "Voir cette annonce.</button>";
-			echo '<br><br>';
+			if ($row['statut'] == 1) {
+				afficherannonce($idcom, $row['A_ID']);
+				echo '<br>';
+				echo '<button name="A_ID" value="' . $row['A_ID'] . '">';
+				echo "Voir cette annonce.</button>";
+				echo '<br><br>';
+			}
 		}
 		echo "</form>";
 	}
