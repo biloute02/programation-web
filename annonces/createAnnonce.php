@@ -36,12 +36,13 @@ if(isset($_POST["submit"])) {
 		$A_ID = $A_ID['MAX(A_ID)'];			
 
 		for ($i = 0; $i < count($file['name']); $i++) {
-			$temps = microtime(true);
+			$ext = pathinfo($file['name'][$i], PATHINFO_EXTENSION);
+			$nom = $A_ID . "_" . $i . "." . $ext;
 			$origine = $file['tmp_name'][$i];
-			$destination = '../photos/'.$temps;
+			$destination = '../photos/'.$nom;
 			move_uploaded_file($origine,$destination);
 
-			$destination = './photos/'.$temps;
+			$destination = './photos/'.$nom;
 			$query = "INSERT INTO photo VALUES(null, '$destination', $U_ID, $A_ID, $i)";
 			mysqli_query($idcom, $query);
 		}
