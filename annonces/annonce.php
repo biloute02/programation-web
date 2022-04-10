@@ -28,7 +28,7 @@
 	<h1 style="text-align:center;">
 	<a href=../index.php>Share My House</a>
 	</h1>
-	<h2>Recherche Annonce</h2>
+	<h2>Recherche d'Annonce</h2>
 <?php
 	if (!empty($result)) {
 		echo '<form method="post">';

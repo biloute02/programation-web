@@ -36,7 +36,7 @@
 <body>
 	<h1 style="text-align:center;">
 	<a href=../index.php>Share My House</a>
-	</h1>
+	</h1
 	<h2>Recherche Utilisateur</h2>
     <form method="post" action="recherche_user.php">
 		<?php affButtonProfil() ?>

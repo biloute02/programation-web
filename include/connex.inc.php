@@ -21,7 +21,7 @@ function estConnecte()
 	if (!empty($_SESSION['U_ID'])) {
 		return $_SESSION['U_ID'];
 	}
-	return 0;
+	return false;
 }
 
 /* connecte l'utilisateur en l'envoyant sur connexion.php et le ridirige

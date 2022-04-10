@@ -42,16 +42,7 @@
 			echo "<h2>Profil de <i>".$result['pseudo']." :</i></h2>";
 ?>
 	<h2>Informations</h2>
-		<ul>
-			<?php
-			if (estConnecte() == $R_U_ID) {
-				printf("<li>email : %s</li>", $result['email']);
-				printf("<li>date de naissance : %s</li>", $result['date_naissance']);
-			}
-			printf("<li>prénom : %s</li>", $result['prenom']);
-			printf("<li>nom : %s</li>", $result['nom']);
-			?>
-		</ul>
+		<?php affUser($idcom, $R_U_ID, $R_U_ID == estConnecte()); ?>
 	<h2>Notes</h2>
 		<ul>
 			<li><p>Moyenne : <?php echo moyenneNote($idcom, $R_U_ID) ?> / 5</p></li>
