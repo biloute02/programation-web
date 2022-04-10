@@ -4,7 +4,7 @@
 	include_once('../include/user.inc.php');
 	$idcom = connex("myparam");
 
-	if (empty($_SESSION['R_U_ID']) and isConnected())
+	if (empty($_SESSION['R_U_ID']) and estConnecte())
 		$_SESSION['R_U_ID'] = $_SESSION['U_ID'];
 	if (!empty($_SESSION['R_U_ID'])) {
 		$R_U_ID = $_SESSION['R_U_ID'];
@@ -36,7 +36,7 @@
     </form>
 <?php
 	if (isset($result)) {
-		if (isConnected() == $R_U_ID)
+		if (estConnecte() == $R_U_ID)
 			echo "<h2>Votre profil <i>".$result['pseudo']." :</i></h2>";
 		else
 			echo "<h2>Profil de <i>".$result['pseudo']." :</i></h2>";
@@ -44,7 +44,7 @@
 	<h2>Informations</h2>
 		<ul>
 			<?php
-			if (isConnected() == $R_U_ID) {
+			if (estConnecte() == $R_U_ID) {
 				printf("<li>email : %s</li>", $result['email']);
 				printf("<li>date de naissance : %s</li>", $result['date_naissance']);
 			}
@@ -54,8 +54,8 @@
 		</ul>
 	<h2>Notes</h2>
 		<ul>
-			<li><p>Moyenne : ###</p></li>
-			<?php if (isConnected() && isConnected() != $R_U_ID) { ?>
+			<li><p>Moyenne : <?php echo moyenneNote($idcom, $R_U_ID) ?> / 5</p></li>
+			<?php if (estConnecte() && estConnecte() != $R_U_ID) { ?>
 			<li><form method="post" action="note_user.php">
 				<fieldset>
 					<legend>Donner votre avis</legend>
