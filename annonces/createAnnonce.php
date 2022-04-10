@@ -10,7 +10,7 @@ if(isset($_POST["submit"])) {
 	
 	$U_ID = $_SESSION['U_ID'];
 
-	
+	$titre = $_POST["titre"];
 	$type_l = $_POST["logement"];
 	$date_d = $_POST["date_deb"];
 	$date_f = $_POST["date_fin"];
@@ -24,7 +24,7 @@ if(isset($_POST["submit"])) {
 	$surface = trim($_POST["surface"]);
 	$nb_p = trim($_POST["pieces"]);
 	$file = $_FILES['photo'];
-	$SQL_INSERT = "INSERT INTO annonce (statut, type_logement, date_deb, date_fin, date_post, adresse, ville, cp, pays, contenu_annonce, prix, surface, nb_pieces, U_ID) VALUES(1, '$type_l', '$date_d', '$date_f', '$date_p', '$adrs', '$ville', $cp, '$pays','$desc', $prix, $surface, $nb_p, $U_ID)";
+	$SQL_INSERT = "INSERT INTO annonce (statut, titre, type_logement, date_deb, date_fin, date_post, adresse, ville, cp, pays, contenu_annonce, prix, surface, nb_pieces, U_ID) VALUES(1, '$titre', '$type_l', '$date_d', '$date_f', '$date_p', '$adrs', '$ville', $cp, '$pays','$desc', $prix, $surface, $nb_p, $U_ID)";
 	
 	if(preg_match('/^[0-9]+\ [a-zA-Z- 0-9]+/', $adrs)) {	
 		$idcom = connex("myparam") or die("Erreur de connexion");
@@ -36,12 +36,13 @@ if(isset($_POST["submit"])) {
 		$A_ID = $A_ID['MAX(A_ID)'];			
 
 		for ($i = 0; $i < count($file['name']); $i++) {
-			$temps = microtime(true);
+			$ext = pathinfo($file['name'][$i], PATHINFO_EXTENSION);
+			$nom = $A_ID . "_" . $i . "." . $ext;
 			$origine = $file['tmp_name'][$i];
-			$destination = '../photos/'.$temps;
+			$destination = '../photos/'.$nom;
 			move_uploaded_file($origine,$destination);
 
-			$destination = './photos/'.$temps;
+			$destination = './photos/'.$nom;
 			$query = "INSERT INTO photo VALUES(null, '$destination', $U_ID, $A_ID, $i)";
 			mysqli_query($idcom, $query);
 		}
