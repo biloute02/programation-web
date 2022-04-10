@@ -15,6 +15,9 @@ CREATE TABLE Photo (
     P_ID int AUTO_INCREMENT,
     chemin varchar(100),
     U_ID int NOT NULL,
+    A_ID int NOT NULL,
+    num_photo int,
+    FOREIGN KEY(A_ID) REFERENCES Annonce(A_ID),
     FOREIGN KEY(U_ID) REFERENCES Utilisateur(U_ID),
     PRIMARY KEY(P_ID)
 );
@@ -47,15 +50,6 @@ CREATE TABLE reserve(
     PRIMARY KEY(U_ID, A_ID),
     FOREIGN KEY(U_ID) REFERENCES Utilisateur(U_ID),
     FOREIGN KEY(A_ID) REFERENCES Annonce(A_ID)
-);
-
-CREATE TABLE illustre(
-    P_ID int,
-    A_ID int,
-    num_photo int,
-    FOREIGN KEY(P_ID) REFERENCES Photo(P_ID),
-    FOREIGN KEY(A_ID) REFERENCES Annonce(A_ID),
-    PRIMARY KEY(P_ID, A_ID)
 );
 
 CREATE TABLE communiquer(

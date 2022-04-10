@@ -29,15 +29,22 @@ if(isset($_POST["submit"])) {
 	if(preg_match('/^[0-9]+\ [a-zA-Z- 0-9]+/', $adrs)) {	
 		$idcom = connex("myparam") or die("Erreur de connexion");
 		mysqli_query($idcom, $SQL_INSERT);
-		mysqli_close($idcom);
-			
+		
+		$selectaid = "SELECT MAX(A_ID) FROM annonce WHERE  U_ID = $U_ID";
+		$A_ID = mysqli_query($idcom, $selectaid);
+		$A_ID = $A_ID->fetch_array();
+		$A_ID = $A_ID['MAX(A_ID)'];			
 
 		for ($i = 0; $i < count($file['name']); $i++) {
 			$origine = $file['tmp_name'][$i];
 			$destination = '../photos/'.$file['name'][$i];
 			move_uploaded_file($origine,$destination);
+
+			$destination = './photos/'.$file['name'][$i];
+			$query = "INSERT INTO photo VALUES(null, '$destination', $U_ID, $A_ID, $i)";
+			mysqli_query($idcom, $query);
 		}
-		
+		mysqli_close($idcom);		
 	}else{
 		echo "Adresse invalide <a href='./createAnnonce.html'>Retour sur la page de creation</a>";
 		die();

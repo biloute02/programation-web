@@ -26,8 +26,7 @@ if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère le
 						$annaissance = date('Y-m-d', strtotime($naissance));
 						$query = mysqli_query($connect, "INSERT INTO utilisateur VALUES( null, '$emailadress','$passhash', '$username', '$nomfamille', '$prenom', '$annaissance', now())"); // Insère les éléments dans la base de données
 
-						echo'<a href="../Index.php">Retour à la page d accueil </a> <br>';
-						die("Inscription terminé <a href='connexion.php'> connectez vous </a>"); // L'inscription est terminée
+						header("Location: ./connexion.php");
 
 					}
 					else echo "<p><b>Votre mot de passe doit contenir entre 8 et 16 caractères, une majuscule, une minuscule et un chiffre !</b></p>"; //le mdp ne correspond pas
