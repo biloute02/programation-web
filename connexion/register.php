@@ -42,6 +42,7 @@ if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère le
 ?>
 
 <body>
+	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="connex.css">
 	<form method="POST" action="register.php">
 		<p>Votre adresse mail:</p>
