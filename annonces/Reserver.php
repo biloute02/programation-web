@@ -76,7 +76,7 @@
 	</h1>
 	<h2>Reserver</h2>
 <?php
-	afficherannonce($idcom, $A_ID);
+	afficherannonceimage($idcom, $A_ID);
 ?>
 	<p>
 	<form method="POST" action="./reserver.php">

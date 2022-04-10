@@ -36,6 +36,7 @@
 	}
  ?>
  <body>
+ <meta charset="utf-8">
  <link rel="stylesheet" type="text/css" href="message.css">
 <form method="POST">
 	<label >Message :</label>

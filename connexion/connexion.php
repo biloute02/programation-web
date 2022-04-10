@@ -39,6 +39,7 @@ if (isset($_POST['connexion'])) {
 ?>
 
 <body>
+	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="connex.css">
 	<form action="connexion.php" method="post">
 		<p>Votre adresse mail:</p>
