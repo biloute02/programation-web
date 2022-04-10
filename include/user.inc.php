@@ -5,8 +5,8 @@ function moyenneNote($idcom, $U_ID)
 {
 	$query = "SELECT AVG(note) moy FROM evaluer WHERE U_ID_est_evalue = '$U_ID'";
 	$result = mysqli_query($idcom, $query);
-	$result = mysqli_fetch_all($idcom, $result);
-	return result['moy'];
+	$result = mysqli_fetch_array($result);
+	return round($result['moy'], 2);
 }
 
 function affButtonProfil() {

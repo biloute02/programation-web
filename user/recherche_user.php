@@ -1,10 +1,10 @@
 <?php
-	session_start();
 	include_once('../include/connex.inc.php');
 	include_once('../include/user.inc.php');
+	session_start();
 	$idcom = connex("myparam");
 
-	// si l'utilisateur a été séléctionné
+	// si l'utilisateur a été sélectionné
 	if (!empty($_POST['R_U_ID'])) {
 		$_SESSION['R_U_ID'] = $_POST['R_U_ID'];
 		header("Location: ./user.php");
@@ -22,7 +22,6 @@
 		if (count($result) == 1) {
 			$_SESSION['R_U_ID'] = $result[0]['U_ID'];
 			header("Location: ./user.php");
-		// le else continue en dessous !
 		}
 	}
 ?>
