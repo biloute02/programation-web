@@ -11,17 +11,6 @@ CREATE TABLE Utilisateur (
     UNIQUE(email)
 );
 
-CREATE TABLE Photo (
-    P_ID int AUTO_INCREMENT,
-    chemin varchar(100),
-    U_ID int NOT NULL,
-    A_ID int NOT NULL,
-    num_photo int,
-    FOREIGN KEY(A_ID) REFERENCES Annonce(A_ID),
-    FOREIGN KEY(U_ID) REFERENCES Utilisateur(U_ID),
-    PRIMARY KEY(P_ID)
-);
-
 CREATE TABLE Annonce(
     A_ID int AUTO_INCREMENT,
     statut int,
@@ -43,6 +32,16 @@ CREATE TABLE Annonce(
     PRIMARY KEY(A_ID)
 );
 
+CREATE TABLE Photo (
+    P_ID int AUTO_INCREMENT,
+    chemin varchar(100),
+    U_ID int NOT NULL,
+    A_ID int NOT NULL,
+    num_photo int,
+    FOREIGN KEY(A_ID) REFERENCES Annonce(A_ID),
+    FOREIGN KEY(U_ID) REFERENCES Utilisateur(U_ID),
+    PRIMARY KEY(P_ID)
+);
 
 CREATE TABLE reserve(
     U_ID int,
