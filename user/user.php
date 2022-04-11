@@ -4,14 +4,23 @@
 	include_once('../include/user.inc.php');
 	$idcom = connex("myparam");
 
+	//si aucun utilisateur n'est recherché, on regarde son profil
 	if (empty($_SESSION['R_U_ID'])) {
-		header("Location: recherche_user.php");	
+		if (!estConnecte()) {
+			seConnecter();
+		}
+		$_SESSION['R_U_ID'] = $_SESSION['U_ID'];
 	}
 
+	//on récupère les informations sur l'utilisateur
 	$R_U_ID = $_SESSION['R_U_ID'];
 	$query = "SELECT * FROM Utilisateur WHERE U_ID = '$R_U_ID'";
-	$result = mysqli_query($idcom, $query);
-	$result = mysqli_fetch_array($result, MYSQLI_BOTH);
+	$r_utilisateur = mysqli_query($idcom, $query);
+	$r_utilisateur = mysqli_fetch_array($r_utilisateur, MYSQLI_BOTH);
+
+	//on récupère les annonces de l'utilisateur
+	
+	//on récupère les réservations de l'utilisateur
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,9 +41,9 @@
     </form>
 <?php
 	if (estConnecte() == $R_U_ID) {
-		echo "<h2>Votre profil <i>".$result['pseudo']." :</i></h2>";
+		echo "<h2>Votre profil <i>".$r_utilisateur['pseudo']." :</i></h2>";
 	} else { ?>
-		<h2>Profil de <i><?php echo $result['pseudo'] ?> :</i></h2>
+		<h2>Profil de <i><?php echo $r_utilisateur['pseudo'] ?> :</i></h2>
 		<p><a href="../messagerie/envoie.php">Contacter</a></p>
 	<?php
 	}
@@ -61,7 +70,7 @@
 	<h2>Annonces</h2>
 		<ul>
 			<?php
-			//foreach ($
+				//foreach ($
 			?>
 		</ul>
 </body>

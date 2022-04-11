@@ -6,10 +6,7 @@
 
 	// si on regarde son profil
 	if (!empty($_POST['monProfil'])) {
-		if (!estConnecte()) {
-			seConnecter();
-		}
-		$_SESSION['R_U_ID'] = $_SESSION['U_ID'];
+		$_SESSION['R_U_ID'] = "";
 		header("Location: ./user.php");
 		die();
 	}
@@ -70,7 +67,7 @@
 		<form method="post" action="recherche_user.php">
 			<input type="search" name="R_pseudo" placeholder="Rechercher" accesskey="s">
 			<button type="submit">OK</button>
-			<button type="submit" name="monProfil" value="1">mon profil</button>
+			<button type="submit" name="monProfil" value="true">mon profil</button>
 		</form>
 	<?php
 		if (isset($result)) {

@@ -1,5 +1,5 @@
 <header>
-	<h1>
-		<a href=../index.php>Share My House</a>
-	</h1
+	<h1 style="text-align:center;">
+	<a href=../index.php>Share My House</a>
+	</h1>
 </header>

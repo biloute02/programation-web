@@ -27,6 +27,7 @@ if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère le
 						$query = mysqli_query($connect, "INSERT INTO utilisateur VALUES( null, '$emailadress','$passhash', '$username', '$nomfamille', '$prenom', '$annaissance', now())"); // Insère les éléments dans la base de données
 
 						header("Location: ./connexion.php");
+						die();
 
 					}
 					else echo "<p><b>Votre mot de passe doit contenir entre 8 et 16 caractères, une majuscule, une minuscule et un chiffre !</b></p>"; //le mdp ne correspond pas

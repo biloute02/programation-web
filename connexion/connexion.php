@@ -29,6 +29,7 @@ if (isset($_POST['connexion'])) {
 			unset($_SESSION['page']);
 		}
 		header("Location:" . $page);
+		die();
 		}
 		else die("L'adresse mail ou le mot de passe est incorrect."); 
 

@@ -7,6 +7,7 @@
 	//vérifie si une annonce a été choisi
 	if (empty($_SESSION['A_ID'])) {
 		header("Location: annonce.php");
+		die();
 	}
 	$A_ID = $_SESSION['A_ID'];
 
@@ -46,6 +47,7 @@
 		if (empty($r_reserve_row)) {
 			mysqli_query($idcom, "INSERT INTO reserve VALUES($U_ID, $A_ID, 'En cours')");
 			header("Location: reserver.php");
+			die();
 		}
 	}
 
@@ -55,6 +57,7 @@
 			$query = "DELETE FROM reserve WHERE A_ID = '$A_ID' AND U_ID = '$U_ID'";
 			mysqli_query($idcom, $query);
 			header("Location: reserver.php");
+			die();
 		}
 	}
 
@@ -63,6 +66,7 @@
 		$contacter = $_POST['contacter'];
 		$_SESSION['R_U_ID'];
 		header("Location: ../messagerie/envoie.php");
+		die();
 	}
 
 	//action si on veut visiter le profil du bailleur
@@ -70,6 +74,7 @@
 		$profil = $_POST['profil'];
 		$_SESSION['R_U_ID'] = $profil;
 		header("Location: ../user/user.php");
+		die();
 	}
 
 	//action si le propriétaire ferme l'annonce
@@ -77,6 +82,7 @@
 		$query = "UPDATE annonce SET statut = 0 WHERE A_ID = $A_ID";
 		mysqli_query($idcom, $query);
 		header("Location: reserver.php");
+		die();
 	}
 	
 
@@ -87,6 +93,7 @@
 			U_ID = '$accepter' AND A_ID = '$A_ID'";
 		mysqli_query($idcom, $query);
 		header("Location: reserver.php");
+		die();
 	}
 
 	//action si le propriétaire refuse une annonce
@@ -96,6 +103,7 @@
 			U_ID = '$refuser' AND A_ID = '$A_ID'";
 		mysqli_query($idcom, $query);
 		header("Location: reserver.php");
+		die();
 	}
 ?>
 
@@ -108,9 +116,9 @@
 	<title>Reserver</title>
 </head>
 <body>
-	<h1 style="text-align:center;">
-		<a href=../index.php>Share My House</a>
-	</h1>
+	<?php
+	include("../include/header.inc.php");
+	include("../include/nav.inc.php"); ?>
 	<h2>Demande de Réservation :</h2>
 		<p><a href=./annonce.php>voir toutes les annonces</a>
 	<h2>Annonce</h2>

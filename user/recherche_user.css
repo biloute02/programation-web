@@ -7,5 +7,9 @@ body {
     border: 1px outset black;
 }
 
-html {
+.user {
+	background: white;
+	border: ;
+	margin: 5px;
+	padding: 5px;
 }
