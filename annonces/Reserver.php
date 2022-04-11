@@ -103,7 +103,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="reserver.css">
+	<link rel="stylesheet" type="text/css" href="./reserver.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Reserver</title>
 </head>
@@ -162,7 +162,7 @@
 				printf("<button type='submit' value='%s' name='refuser'>
 					Refuser</button>", $row['U_ID']);
 				printf("<button type='submit' value='%s' name='contacter'>
-					Conctacter</button>", $row['U_ID']);
+					Contacter</button>", $row['U_ID']);
 				printf("<button type='submit' value='%s' name='profil'>
 					Profil</button>", $row['U_ID']);
 				printf("</label></li>");

@@ -29,7 +29,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="recherche_profil.css">
+	<link rel="stylesheet" type="text/css" href="recherche_user.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Recherche Utilisateur</title>
 </head>
