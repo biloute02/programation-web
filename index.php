@@ -31,7 +31,7 @@
 		</ul><ul>
 			<li><a href='user/user.php'>Profil</a></li>
 			<li><a href='user/recherche_user.php'>Recherche de profil</a></li>
-			<li><a href='annonces/createAnnonce.html'>Créer une annonce</a></li>
+			<li><a href='annonces/createAnnonce.php'>Créer une annonce</a></li>
 			<li><a href='annonces/annonce.php'>Voir les annonces</a></li>
 			<li><a href='messagerie/envoie.php'>Messagerie</a></li>
 		</ul>
