@@ -25,8 +25,8 @@ if(isset($_POST["submit"])) {
 	$nb_p = trim($_POST["pieces"]);
 	$file = $_FILES['photo'];
 	$SQL_INSERT = "INSERT INTO annonce (statut, titre, type_logement, date_deb, date_fin, date_post, adresse, ville, cp, pays, contenu_annonce, prix, surface, nb_pieces, U_ID) VALUES(1, '$titre', '$type_l', '$date_d', '$date_f', '$date_p', '$adrs', '$ville', $cp, '$pays','$desc', $prix, $surface, $nb_p, $U_ID)";
-	
-	if(preg_match('/^[0-9]+\ [a-zA-Z- 0-9]+/', $adrs)) {	
+	if ($date_f > $date_d) {
+		if(preg_match('/^[0-9]+\ [a-zA-Z- 0-9]+/', $adrs)) {	
 		$idcom = connex("myparam") or die("Erreur de connexion");
 		mysqli_query($idcom, $SQL_INSERT);
 		
@@ -53,4 +53,7 @@ if(isset($_POST["submit"])) {
 	}
 	echo "Votre annonce a bien ete poste <a href='../index.php'>Retour sur la page d'accueil</a>";
 	}
+	else echo "La date de fin est inferieur à la date de début ! <a href='./createAnnonce.html'> Retour sur la page de creation</a>";
+	}
+	
 ?>

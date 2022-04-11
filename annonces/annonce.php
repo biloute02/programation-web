@@ -77,14 +77,14 @@
 				<option value="appart">Appartement</option>
 			</select>
 	<br><label id="prixmin">Prix (€) :</label> 
-	<input type="number" name="prixmin" accesskey="s" placeholder="Minimum" id="prixmin">
-	<input type="number" name="prixmax" accesskey="s" placeholder="Maximum" id="prixmax">
+	<input type="number" name="prixmin" accesskey="s" placeholder="Minimum" id="prixmin" min="0">
+	<input type="number" name="prixmax" accesskey="s" placeholder="Maximum" id="prixmax" min="0">
 	<br><label id="datedeb">Dates début | fin:</label>
 	<input type="date" name="datedebut" id="datedeb">
 	<input type="date" name="datefin" id="datefin">
 	<br><label id="piecemin">Nombre de pièces :</label> 
-	<input type="number" name="piecemin" accesskey="s" placeholder="Minimum" id="piecemin">
-	<input type="number" name="piecemax" accesskey="s" placeholder="Maximum" id="piecemax">
+	<input type="number" name="piecemin" accesskey="s" placeholder="Minimum" id="piecemin" min="0">
+	<input type="number" name="piecemax" accesskey="s" placeholder="Maximum" id="piecemax" min="0">
 	<br>
 	<input type="submit" name="rechercher" value="Rechercher">
 	</form>
