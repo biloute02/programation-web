@@ -13,7 +13,7 @@
 	<h1 style="text-align:center;">
 	Share My House 
 	</h1>
-	<?php if (empty($_SESSION['pseudo'])) echo "vous êtes déconnectés"; else echo "vous êtes connectés en tant que : <b>".$_SESSION['pseudo']."</b>" ?>
+	<?php if (empty($_SESSION['U_ID'])) echo "vous êtes déconnectés"; else echo "vous êtes connectés en tant que : <b>".$_SESSION['pseudo']."</b>" ?>
 	<p><a href='user/user.php'>profile</a>
 	<p><a href='user/recherche_user.php'>recherche de profile</a>
 	<p><a href='connexion/connexion.php'>connexion</a>

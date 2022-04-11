@@ -38,9 +38,12 @@ if (isset($_POST['connexion'])) {
 
 ?>
 
-<body>
+<!DOCTYPE html>
+<head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="connex.css">
+</head>
+<body>
 	<form action="connexion.php" method="post">
 		<p>Votre adresse mail:</p>
 	    <input type="text" name="email">
