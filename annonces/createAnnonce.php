@@ -1,48 +1,30 @@
-<?php
-if(isset($_POST["submit"])) {
-	date_default_timezone_set('Europe/Paris');
-	include '../include/connex.inc.php';
-	session_start();
-
-	if (!estConnecte()) {
-		seConnecter();
-		}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="createAnnonce.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Créer Annonce</title>
+	</head>
+	<body>
 	
-	$U_ID = $_SESSION['U_ID'];
-
-	$titre = $_POST["titre"];
-	$type_l = $_POST["logement"];
-	$date_d = $_POST["date_deb"];
-	$date_f = $_POST["date_fin"];
-	$date_p = date('Y-m-d');
-	$adrs = trim($_POST["adresse"]);
-	$ville = trim($_POST["ville"]);
-	$cp = trim($_POST["CP"]);
-	$pays = trim($_POST["pays"]);
-	$desc = trim($_POST["desc"]);
-	$prix = trim($_POST["prix"]);
-	$surface = trim($_POST["surface"]);
-	$nb_p = trim($_POST["pieces"]);
-	$file = $_FILES['photo'];
-	$SQL_INSERT = "INSERT INTO annonce (statut, titre, type_logement, date_deb, date_fin, date_post, adresse, ville, cp, pays, contenu_annonce, prix, surface, nb_pieces, U_ID) VALUES(1, '$titre', '$type_l', '$date_d', '$date_f', '$date_p', '$adrs', '$ville', $cp, '$pays','$desc', $prix, $surface, $nb_p, $U_ID)";
-	if ($date_f > $date_d) {
-		if(preg_match('/^[0-9]+\ [a-zA-Z- 0-9]+/', $adrs)) {	
-		$idcom = connex("myparam") or die("Erreur de connexion");
-		mysqli_query($idcom, $SQL_INSERT);
+		<?php
+			include '../include/connex.inc.php';			
+			session_start();
+			if (!estConnecte()) {
+				seConnecter();
+			}
+			include '../include/header.inc.php';
+			include '../include/nav.inc.php';
+		?>
 		
-<<<<<<< HEAD
-		$selectaid = "SELECT MAX(A_ID) FROM annonce WHERE  U_ID = $U_ID";
-		$A_ID = mysqli_query($idcom, $selectaid);
-		$A_ID = $A_ID->fetch_array();
-		$A_ID = $A_ID['MAX(A_ID)'];			
-=======
 			<form method="post" action="traiteAnnonce.php" enctype="multipart/form-data">
 			
 			<!-- class Titre -->
 			<div class="titre">
 			<p>
 			<label for="titre">Donner un titre a votre annonce :<br></label>
-			<input type="text" id="titre" name="titre" required>
+			<input type="text" maxlength="30" id="titre" name="titre" required>
 			</p>
 			</div>
 			
@@ -73,7 +55,7 @@ if(isset($_POST["submit"])) {
 			<div class="adresse">
 			<p>
 			<label for="adresse">Adresse</label>
-			<input type="text" id="adresse" name="adresse" required>
+			<input type="text" maxlength="50" id="adresse" name="adresse" required>
 			</p>
 			</div>
 			
@@ -81,7 +63,7 @@ if(isset($_POST["submit"])) {
 			<div class="ville">
 			<p>
 			<label for="ville">Ville</label>
-			<input type="text" id="ville" name="ville" required>
+			<input type="text" maxlength="50" id="ville" name="ville" required>
 			</p>
 			</div>
 			
@@ -89,7 +71,7 @@ if(isset($_POST["submit"])) {
 			<div class="CP">
 			<p>
 			<label for="CP">Code Postale</label>
-			<input type="number" id="CP" name="CP" required>
+			<input type="number" min="0" max="99999" maxlength="5" id="CP" name="CP" required>
 			</p>
 			</div>
 			
@@ -97,7 +79,7 @@ if(isset($_POST["submit"])) {
 			<div class="pays">
 			<p>
 			<label for="pays">Pays</label>
-			<input type="text" id="pays" name="pays" required>
+			<input type="text" maxlength="50" id="pays" name="pays" required>
 			</p>
 			</div>
 			
@@ -147,27 +129,6 @@ if(isset($_POST["submit"])) {
 			<input type="submit" name="submit" value="Publier" required>
 			</p>
 			</div>
->>>>>>> 87f44ea316850a5776202a971d8a842a1aec4d01
 
-		for ($i = 0; $i < count($file['name']); $i++) {
-			$ext = pathinfo($file['name'][$i], PATHINFO_EXTENSION);
-			$nom = $A_ID . "_" . $i . "." . $ext;
-			$origine = $file['tmp_name'][$i];
-			$destination = '../photos/'.$nom;
-			move_uploaded_file($origine,$destination);
-
-			$destination = './photos/'.$nom;
-			$query = "INSERT INTO photo VALUES(null, '$destination', $U_ID, $A_ID, $i)";
-			mysqli_query($idcom, $query);
-		}
-		mysqli_close($idcom);		
-	}else{
-		echo "Adresse invalide <a href='./createAnnonce.html'>Retour sur la page de creation</a>";
-		die();
-	}
-	echo "Votre annonce a bien ete poste <a href='../index.php'>Retour sur la page d'accueil</a>";
-	}
-	else echo "La date de fin est inferieur à la date de début ! <a href='./createAnnonce.html'> Retour sur la page de creation</a>";
-	}
-	
-?>
+	</body>
+</html>

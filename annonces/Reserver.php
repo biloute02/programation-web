@@ -124,7 +124,7 @@
 	<h2>Annonce</h2>
 		<?php afficherannonceimage($idcom, $A_ID); ?>
 	<h2>Bailleur</h2>
-		<?php affUser($idcom, $A_ID); ?>
+		<?php affUser($idcom, $r_annonce['U_ID']); ?>
 	<hr>
 	<form method="POST" action="./reserver.php">
 	<?php
