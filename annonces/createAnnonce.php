@@ -18,7 +18,7 @@
 			include '../include/nav.inc.php';
 		?>
 		
-			<form method="post" action="createAnnonce.php" enctype="multipart/form-data">
+			<form method="post" action="traiteAnnonce.php" enctype="multipart/form-data">
 			
 			<!-- class Titre -->
 			<div class="titre">
