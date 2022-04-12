@@ -35,10 +35,13 @@
 </head>
 <body>
 	<?php
+	include("../include/header.inc.php");
+	include("../include/nav.inc.php"); ?>
+	<main>
+	<?php
 	if (!empty($R_U_ID)) {
 		affAvisAll($idcom, $R_U_ID);
-	}
-	$e = 0;
-	?>
+	} ?>
+	</main>
 </body>
 </html>

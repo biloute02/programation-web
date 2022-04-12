@@ -6,6 +6,7 @@
 	if (!empty($_POST['A_ID'])) {
 		$_SESSION['A_ID'] = $_POST['A_ID'];
 		header("Location: reserver.php");
+		die();
 	}
 	
 	$idcom = connex("myparam");
@@ -61,9 +62,9 @@
 	<title>Recherche Annonce</title>
 </head>
 <body>
-	<h1 style="text-align:center;">
-	<a href=../index.php>Share My House</a>
-	</h1>
+	<?php
+	include("../include/header.inc.php");
+	include("../include/nav.inc.php"); ?>
 	<h2>Recherche Annonce</h2>
 	<form method="POST">
 	<label id="pays">Pays :</label>

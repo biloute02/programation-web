@@ -29,6 +29,7 @@ if (isset($_POST['connexion'])) {
 			unset($_SESSION['page']);
 		}
 		header("Location:" . $page);
+		die();
 		}
 		else die("L'adresse mail ou le mot de passe est incorrect."); 
 
@@ -38,9 +39,12 @@ if (isset($_POST['connexion'])) {
 
 ?>
 
-<body>
+<!DOCTYPE html>
+<head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="connex.css">
+</head>
+<body>
 	<form action="connexion.php" method="post">
 		<p>Votre adresse mail:</p>
 	    <input type="text" name="email">

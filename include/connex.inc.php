@@ -30,6 +30,7 @@ function estConnecte()
 function seConnecter()
 {
 		$_SESSION['page'] = $_SERVER['SCRIPT_NAME'];
-		Header("Location: ../connexion/connexion.php");
+		header("Location: ../connexion/connexion.php");
+		die();
 }
 ?>
