@@ -13,6 +13,7 @@
 	
 	if (isset($_POST['envoie'])) {
 		$message = htmlentities(trim($_POST['message']), ENT_QUOTES, "UTF-8"); // permet l'ajout des tildes
+		$message = nl2br($message);
 		if ($message) {
 			$query1 = mysqli_query($connect, "INSERT INTO communiquer VALUES('$iddestinataire', '$idutilisateur', now(), '$message')");
 			header("Location:envoie.php");		
