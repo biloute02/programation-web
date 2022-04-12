@@ -52,5 +52,9 @@ if (isset($_POST['connexion'])) {
 	    <input type="password" name="password">
 	    <br><br>
 	    <input type="submit" name="connexion" value="Connexion" />
+	    <br>
+	    <h4>Vous ne possedez pas de compte ?</h4>
+	    <a href="./register.php"> <input type="button" value="Créer un compte"> </a>
+	    <br>
 	</form>
 </body>
