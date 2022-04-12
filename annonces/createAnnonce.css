@@ -1,0 +1,8 @@
+@import url("../include/header.inc.css");
+@import url("../include/nav.inc.css");
+
+body {
+	background-color: lightgray;
+    /*text-align: center;*/
+    border: 1px outset black;
+}

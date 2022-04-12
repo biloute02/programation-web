@@ -1,4 +1,11 @@
+<!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="createAnnonce.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Créer Annonce</title>
+	</head>
 	<body>
 	
 		<?php
@@ -7,6 +14,8 @@
 			if (!estConnecte()) {
 				seConnecter();
 			}
+			include '../include/header.inc.php';
+			include '../include/nav.inc.php';
 		?>
 		
 			<form method="post" action="createAnnonce.php" enctype="multipart/form-data">
