@@ -46,7 +46,12 @@
 	include("../include/nav.inc.php"); ?>
 	<main>
 	<h2>Messagerie</h2>
-	<h3>Conversation avec <i><?php echo $R_pseudo; ?></i> :</h3>
+	<h3>Conversation avec
+		<?php if (estConnecte() == $iddestinataire) {
+			echo " soi-même :";
+		} else {
+			echo "<i>$R_pseudo</i> :"; 
+		} ?></h3>
 	<form method="POST">
 		<?php
 		if(mysqli_num_rows($result) >= 1) {

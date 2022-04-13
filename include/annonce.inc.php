@@ -13,6 +13,11 @@ function afficherannonceimage($idcom, $A_ID)
 	$row['date_fin'] = strtotime($row['date_fin']);
 	$row['date_fin'] = date('d-m-Y', $row['date_fin']);
 
+	echo "<dl>";
+	if ($row['statut'] == 0)
+		echo "<dt><b>- Annonce Privée -</b></dt>";
+	echo "<dt>\"<u>" . $row['titre'] . "</u>\"</dt>"; 
+	echo "<dd>";
 	echo "Type de logement : " . $row['type_logement'] . "<br>";		
 	echo "Date début : " . $row['date_deb'] . "<br>";		
 	echo "Date fin : " . $row['date_fin'] . "<br>";
@@ -24,6 +29,7 @@ function afficherannonceimage($idcom, $A_ID)
 	echo "Surface : " . $row['surface'] . "<br>";
 	echo "Nombre de pièces : " . $row['nb_pieces'] . "<br>";
 	echo "Description : " . $row['contenu_annonce'];
+	echo "</dd></dl>";
 
 	$query1 = mysqli_query($connect, "SELECT chemin FROM photo WHERE A_ID = $A_ID");
 	echo "<br>";
@@ -50,6 +56,8 @@ function afficherannonce($idcom, $A_ID)
 	$row['date_fin'] = date('d-m-Y', $row['date_fin']);
 
 	echo "<dl>" ;
+	if ($row['statut'] == 0)
+		echo "<dt><b>- Annonce Privée -</b></dt>";
 	echo "<dt>\"<u>" . $row['titre'] . "</u>\"</dt>"; 
 	echo "<dd>";
 	echo "Type de logement : " . $row['type_logement'] . "<br>";		
