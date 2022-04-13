@@ -24,7 +24,7 @@
 			<div class="titre">
 			<p>
 			<label for="titre">Donner un titre a votre annonce :<br></label>
-			<input type="text" id="titre" name="titre" required>
+			<input type="text" maxlength="30" id="titre" name="titre" required>
 			</p>
 			</div>
 			
@@ -55,7 +55,7 @@
 			<div class="adresse">
 			<p>
 			<label for="adresse">Adresse</label>
-			<input type="text" id="adresse" name="adresse" required>
+			<input type="text" maxlength="50" id="adresse" name="adresse" required>
 			</p>
 			</div>
 			
@@ -63,7 +63,7 @@
 			<div class="ville">
 			<p>
 			<label for="ville">Ville</label>
-			<input type="text" id="ville" name="ville" required>
+			<input type="text" maxlength="50" id="ville" name="ville" required>
 			</p>
 			</div>
 			
@@ -71,7 +71,7 @@
 			<div class="CP">
 			<p>
 			<label for="CP">Code Postale</label>
-			<input type="number" id="CP" name="CP" required>
+			<input type="number" min="0" max="99999" maxlength="5" id="CP" name="CP" required>
 			</p>
 			</div>
 			
@@ -79,7 +79,7 @@
 			<div class="pays">
 			<p>
 			<label for="pays">Pays</label>
-			<input type="text" id="pays" name="pays" required>
+			<input type="text" maxlength="50" id="pays" name="pays" required>
 			</p>
 			</div>
 			
