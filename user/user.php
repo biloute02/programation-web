@@ -33,7 +33,7 @@
 		//on récupère les réservations reçues par l'utilisateur
 		$query = "SELECT r.statut_res, r.U_ID, a.A_ID, titre, date_post, pseudo
 			FROM reserve r, annonce a, utilisateur u WHERE r.A_ID = a.A_ID
-			AND r.U_ID = u.U_ID AND a.A_ID = $R_U_ID";
+			AND r.U_ID = u.U_ID AND a.U_ID = $R_U_ID";
 		$r_recu = mysqli_query($idcom, $query);
 		$r_recu = mysqli_fetch_all($r_recu, MYSQLI_BOTH);
 	}
@@ -108,7 +108,6 @@
 		<form method="post" action="../annonces/reserver.php">
 		<h3>Reçues</h3>
 		<?php
-			print_r($r_recu);
 		function  affDemandes($r_recu, $statut_res) {
 			foreach ($r_recu as $row) {
 				if ($row['statut_res'] != $statut_res) continue;

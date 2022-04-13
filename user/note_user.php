@@ -10,7 +10,6 @@
 			$U_ID = $_SESSION['U_ID'];
 			$note = $_POST['note'];
 			$com = mysqli_real_escape_string($idcom, $_POST['com']);
-			echo "<p>$com</p>";
 			$query = "SELECT * FROM evaluer WHERE U_ID_est_evalue = '$R_U_ID' AND U_ID_evalue = '$U_ID'";
 			$result = mysqli_query($idcom, $query);
 			$result = mysqli_fetch_all($result, MYSQLI_BOTH);
@@ -22,8 +21,6 @@
 			$result = mysqli_query($idcom, $query);
 		}
 	}
-	//$result = mysqli_fetch_array($result, MYSQLI_BOTH);
-	//$query = "SELECT note, contenu_eval FROM evaluer WHERE U_ID_est_evalue = '$R_U_ID' AND U_ID_evalue = '$U_ID':";
 ?>
 <!DOCTYPE html>
 <html>
