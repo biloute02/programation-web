@@ -1,5 +1,5 @@
 <?php
-	include_once "../connexion/param_mysql.php";
+	include_once "../include/myparam.inc.php";
 	include_once "../include/connex.inc.php";
 	session_start();
 

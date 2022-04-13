@@ -1,6 +1,6 @@
 <?php
 
-include_once "param_mysql.php";
+include_once "../include/myparam.inc.php";
 
 if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère les données de l'utilisateur
 	$username = htmlentities(trim($_POST['username']), ENT_QUOTES, "UTF-8");

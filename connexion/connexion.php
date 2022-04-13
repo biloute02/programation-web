@@ -1,5 +1,5 @@
 <?php
-include_once "param_mysql.php";
+include_once "../include/myparam.inc.php";
 session_start();
 
 if (isset($_POST['connexion'])) {
