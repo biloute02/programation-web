@@ -93,15 +93,19 @@
 <?php
 	if (!empty($result)) {
 		echo '<form method="post">';
+		echo "<ol>";
 		foreach ($result as $row){
 			if ($row['statut'] == 1) {
+				echo '<li>';
 				afficherannonce($idcom, $row['A_ID']);
 				echo '<br>';
 				echo '<button name="A_ID" value="' . $row['A_ID'] . '">';
 				echo "Voir cette annonce.</button>";
 				echo '<br><br>';
+				echo '</li>';
 			}
 		}
+		echo "</ol>";
 		echo "</form>";
 	}
 ?>

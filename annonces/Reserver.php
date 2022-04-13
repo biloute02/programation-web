@@ -24,13 +24,7 @@
 	$r_annonce = mysqli_fetch_array($r_annonce);
 
 	//on récupère les informations de réservation entre l'annonce et l'utilisateur
-	//les données sont différentes si l'utilisateur est locataire ou non
-	if ($U_ID == $r_annonce['U_ID']) {
-		//on récupère toutes les demandes de réservation sur l'annonce
-		$query = "SELECT r.U_ID, A_ID, pseudo, statut_res FROM reserve r, utilisateur u 
-			WHERE r.U_ID = u.U_ID AND r.A_ID = '$A_ID'";
-		$r_reserve = mysqli_fetch_all(mysqli_query($idcom, $query), MYSQLI_BOTH);
-	} else {
+	if ($U_ID != $r_annonce['U_ID']) {
 		//on récupère le status de la demande d'un utilisateur
 		$query = "SELECT * FROM reserve WHERE A_ID = '$A_ID' AND U_ID = '$U_ID'";
 		$r_reserve = mysqli_fetch_array(mysqli_query($idcom, $query));
@@ -44,7 +38,7 @@
 
 	//action si on veut reserver l'annonce
 	if (isset($_POST['reserver'])) {
-		if (empty($r_reserve_row)) {
+		if (empty($r_reserve)) {
 			mysqli_query($idcom, "INSERT INTO reserve VALUES($U_ID, $A_ID, 'En cours')");
 			header("Location: reserver.php");
 			die();
@@ -63,8 +57,7 @@
 
 	//action si on veut contacter le locataire
 	if (isset($_POST['contacter'])) {
-		$contacter = $_POST['contacter'];
-		$_SESSION['R_U_ID'];
+		$_SESSION['R_U_ID'] = $_POST['contacter'];
 		header("Location: ../messagerie/envoie.php");
 		die();
 	}
@@ -85,6 +78,13 @@
 		die();
 	}
 	
+	//action si le propriétaire ouvre l'annonce
+	if (isset($_POST['ouvrir'])) {
+		$query = "UPDATE annonce SET statut = 1 WHERE A_ID = $A_ID";
+		mysqli_query($idcom, $query);
+		header("Location: reserver.php");
+		die();
+	}
 
 	//action si le propriétaire accepte une réservation
 	if (isset($_POST['accepter'])) {
@@ -136,15 +136,16 @@
 		if (empty($r_reserve)) { ?>
 			<input type='submit' value='Reserver' name='reserver'>
 		<?php
+		//sinon on affiche le status de la réservation.
 		} else { 
-			if ('En cours' == $r_reserve['statut_res']) { ?>
+			if (EN_COURS == $r_reserve['statut_res']) { ?>
 				<p>Réservation en attente du locataire.</p>
 				<input type='submit' value='Se retirer' name='retirer'>
 			<?php
-			} else if ('Accepte' == $r_reserve['statut_res']) { ?>
+			} else if (ACCEPTE == $r_reserve['statut_res']) { ?>
 				<p>Réservation acceptée.</p>
 			<?php
-			} else if ('Refuse' == $r_reserve['statut_res']) { ?>
+			} else if (REFUSE == $r_reserve['statut_res']) { ?>
 				<p>Réservation refusée.</p>
 			<?php
 			}
@@ -157,34 +158,16 @@
 
 	<?php
 	//intéractions pour le propriétaire
-	} else {
-		//
-		function reservation ($r_reserve, $statut_res = null) {
-			echo "<ul>";
-			foreach ($r_reserve as $row) {
-				if ($statut_res != null and $statut_res != $row['statut_res'])
-					continue;
-				printf("<li><label>%s :", $row['pseudo']);
-				printf("<button type='submit' value='%s' name='accepter'>
-					Accepter</button>", $row['U_ID']);
-				printf("<button type='submit' value='%s' name='refuser'>
-					Refuser</button>", $row['U_ID']);
-				printf("<button type='submit' value='%s' name='contacter'>
-					Contacter</button>", $row['U_ID']);
-				printf("<button type='submit' value='%s' name='profil'>
-					Profil</button>", $row['U_ID']);
-				printf("</label></li>");
-			}
-			echo "</ul>";
-		} ?>
+	} else { ?>
 		<h3>Réservation(s) :</h3>
 		<button type='submit' name='fermer'>Fermer l'annonce</button>
+		<button type='submit' name='ouvrir'>Ouvrir l'annonce</button>
 		<h4>En cours</h4>
-		<?php reservation($r_reserve, "En cours"); ?>
-		<h4>Accepté</h4>
-		<?php reservation($r_reserve, "Accepte"); ?>
-		<h4>Refusé</h4>
-		<?php reservation($r_reserve, "Refuse");
+		<?php affAllReservation($idcom, $A_ID, EN_COURS); ?>
+		<h4>Acceptée</h4>
+		<?php affAllReservation($idcom, $A_ID, ACCEPTE); ?>
+		<h4>Refusée</h4>
+		<?php affAllReservation($idcom, $A_ID, REFUSE);
 	}
 	?>
 	</form>

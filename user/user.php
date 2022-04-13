@@ -1,7 +1,8 @@
 <?php
 	session_start();
-	include_once('../include/connex.inc.php');
-	include_once('../include/user.inc.php');
+	include_once '../include/connex.inc.php';
+	include_once '../include/user.inc.php';
+	include_once '../include/annonce.inc.php';
 	$idcom = connex("myparam");
 
 	//si aucun utilisateur n'est recherché, on regarde son profil
@@ -17,10 +18,25 @@
 	$query = "SELECT * FROM Utilisateur WHERE U_ID = '$R_U_ID'";
 	$r_utilisateur = mysqli_query($idcom, $query);
 	$r_utilisateur = mysqli_fetch_array($r_utilisateur, MYSQLI_BOTH);
-
-	//on récupère les annonces de l'utilisateur
 	
-	//on récupère les réservations de l'utilisateur
+	//on récupère les annonces de l'utilisateur
+	$query = "SELECT * FROM Annonce WHERE U_ID = '$R_U_ID'";
+	$r_annonce = mysqli_query($idcom, $query);
+	$r_annonce = mysqli_fetch_all($r_annonce, MYSQLI_BOTH);
+
+	if (estConnecte() == $R_U_ID) {
+		//on récupère les réservations envoyés par l'utilisateur
+		$query = "SELECT r.statut_res, a.A_ID, titre, date_post FROM reserve r, annonce a WHERE r.A_ID = a.A_ID AND r.U_ID = '$R_U_ID'";
+		$r_envoye = mysqli_query($idcom, $query);
+		$r_envoye = mysqli_fetch_all($r_envoye, MYSQLI_BOTH);
+		
+		//on récupère les réservations reçues par l'utilisateur
+		$query = "SELECT r.statut_res, r.U_ID, a.A_ID, titre, date_post, pseudo
+			FROM reserve r, annonce a, utilisateur u WHERE r.A_ID = a.A_ID
+			AND r.U_ID = u.U_ID AND a.A_ID = $R_U_ID";
+		$r_recu = mysqli_query($idcom, $query);
+		$r_recu = mysqli_fetch_all($r_recu, MYSQLI_BOTH);
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,11 +83,94 @@
 			<li><a href="./note_user.php">Voir tous les avis</a>
 			</li>
 		</ul>
-	<h2>Annonces</h2>
-		<ul>
+	<?php
+	if (estConnecte() == $R_U_ID) { ?>
+	<hr>
+	<h2>Réservations</h2>
+		<form method="post" action="../annonces/annonce.php">
+		<h3>Envoyées</h3>
+			<ul>
 			<?php
-				//foreach ($
-			?>
+			foreach ($r_envoye as $row) {
+				echo '<li>';
+				echo '<dl>';
+				echo '<dt>"<u>' . $row['titre'] . '</u>" ';
+					echo "mise en ligne le " . $row['date_post'] . ".";
+				echo '</dt>';
+				echo '<dd>Demande : <b>' . $row['statut_res'] . "</b></dd>";
+				echo '<dd><button name="A_ID" value="' . $row['A_ID'] . '">';
+					echo "Voir l'annonce</button></dd>";
+				echo "</dl>";
+				echo "</li>";
+			} ?>
+			</ul>
+		</form>
+		<form method="post" action="../annonces/reserver.php">
+		<h3>Reçues</h3>
+		<?php
+			print_r($r_recu);
+		function  affDemandes($r_recu, $statut_res) {
+			foreach ($r_recu as $row) {
+				if ($row['statut_res'] != $statut_res) continue;
+				echo '<li>';
+				echo '<dl>';
+				echo '<dt>"<u>' . $row['titre'] . '</u>" ';
+					echo "mise en ligne le " . $row['date_post'] . ".";
+				echo '</dt>';
+				echo '<dd><i>' . $row['pseudo'] . "</i> : ";
+					echo '<button name="contacter" value="' . $row['U_ID'] . '">';
+					echo "Contacter</button>";
+					echo '<button name="profil" value="' . $row['U_ID'] . '">';
+					echo "Profil</button>";
+				echo "</dd>";
+				echo "</dl>";
+				echo '</li>';
+			}
+		}?>
+		<h4>En attentes</h4>
+			<ul>
+			<?php affDemandes($r_recu, EN_COURS); ?>
+			</ul>
+		<h4>Acceptées</h4>
+			<ul>
+			<?php affDemandes($r_recu, ACCEPTE); ?>
+			</ul>
+		</form>
+	<?php
+	} ?>
+	<hr>
+	<h2>Annonces</h2>
+		<form method="post" action="../annonces/annonce.php">
+		<h3>Publics</h3>
+		<ul>
+		<?php
+		foreach ($r_annonce as $row) {
+			if ($row['statut']) {
+				echo '<li>';
+				afficherannonce($idcom, $row['A_ID']);
+				echo '<button name="A_ID" value="' . $row['A_ID'] . '">';
+				echo "Voir cette annonce</button>";
+				echo '</li>';
+			}
+		} ?>
 		</ul>
+		<?php
+		if (estConnecte() == $R_U_ID) { ?>
+			<h3>Privées</h3>
+			<ul>
+			<?php
+			foreach ($r_annonce as $row) {
+				if (!$row['statut']) {
+					echo '<li>';
+					afficherannonce($idcom, $row['A_ID']);
+					echo '<button name="A_ID" value="' . $row['A_ID'] . '">';
+					echo "Voir cette annonce.</button>";
+					echo '</li>';
+				}
+			}
+		}
+		?>
+		</ul>
+		</form>
 </body>
 </html>

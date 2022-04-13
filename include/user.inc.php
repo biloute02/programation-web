@@ -1,4 +1,5 @@
 <?php
+include_once('constant.inc.php');
 include_once('connex.inc.php');
 
 /* Renvoie la moyenne des notes d'un utilisateur arrondi au dixième.
@@ -12,9 +13,9 @@ function moyenneNote($idcom, $U_ID)
 }
 
 /* Affiche les informations publics d'un utilisateur par défaut.
- * Si $all vaut "true", affiche toutes les informations.
+ * Si $desc vaut MAX, affiche toutes les informations.
  */
-function affUser($idcom, $U_ID, $all = false)
+function affUser($idcom, $U_ID, $desc = false)
 {
 	$query = "SELECT * FROM Utilisateur WHERE U_ID = '$U_ID'";
 	$result = mysqli_query($idcom, $query);
@@ -24,7 +25,7 @@ function affUser($idcom, $U_ID, $all = false)
 	printf("<dd>prénom : %s</dd>", $result['prenom']);
 	printf("<dd>nom : %s</dd>", $result['nom']);
 	printf("<dd>date d'inscription : %s</dd>", $result['date_inscription']);
-	if ($all) {
+	if ($desc) {
 		printf("<dd>email : %s</dd>", $result['email']);
 		printf("<dd>date de naissance : %s</dd>", $result['date_naissance']);
 	}
@@ -56,7 +57,7 @@ function affAvisAll($idcom, $R_U_ID)
 			echo '<div class="avis">';
 			echo '<dt><b>' . $pseudo['pseudo'] . '</b> :</dt>';
 			echo '<dd>' . $row['note'] . ' / 5</dd>';
-			echo '<dd>' . $row['contenu_eval'] . '</dd>';
+			echo '<dd>' . nl2br($row['contenu_eval']) . '</dd>';
 			echo "</div>";
 		}
 		echo '</dl>';
