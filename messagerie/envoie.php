@@ -7,9 +7,19 @@
 		seConnecter();
 
 	$idutilisateur = $_SESSION['U_ID'];
-	$iddestinataire = $_SESSION['R_U_ID'];
+
+	if (empty($_SESSION['R_U_ID'])) {
+		header("Location: ../user/recherche_user.php");
+	}
+
 	$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
-	$query = mysqli_query($connect, "SELECT contenu_message,U_ID_envoie FROM communiquer WHERE (U_ID_recoit = '$iddestinataire' AND U_ID_envoie = '$idutilisateur') OR (U_ID_recoit = '$idutilisateur' AND U_ID_envoie = '$iddestinataire') ORDER BY date_envoi DESC LIMIT 20"); // prend les 20 derniers messages mais les affiche de haut en bas
+
+	$iddestinataire = $_SESSION['R_U_ID'];
+	$query = "SELECT pseudo FROM utilisateur WHERE U_ID = '" . $_SESSION['R_U_ID'] . "'";
+	$R_pseudo = mysqli_fetch_row(mysqli_query($connect, $query))[0];
+
+	$query = "SELECT contenu_message,U_ID_envoie FROM communiquer WHERE (U_ID_recoit = '$iddestinataire' AND U_ID_envoie = '$idutilisateur') OR (U_ID_recoit = '$idutilisateur' AND U_ID_envoie = '$iddestinataire') ORDER BY date_envoi DESC LIMIT 20";
+	$result = mysqli_query($connect, $query); // prend les 20 derniers messages mais les affiche de haut en bas
 	
 	if (isset($_POST['envoie'])) {
 		$message = htmlentities(trim($_POST['message']), ENT_QUOTES, "UTF-8"); // permet l'ajout des tildes
@@ -20,9 +30,27 @@
 		}
 	}
 
-	if(mysqli_num_rows($query) >= 1) {
-			$result = $connect->query("SELECT contenu_message,U_ID_envoie FROM communiquer WHERE (U_ID_recoit = '$iddestinataire' AND U_ID_envoie = '$idutilisateur') OR (U_ID_recoit = '$idutilisateur' AND U_ID_envoie = '$iddestinataire') ORDER BY date_envoi DESC LIMIT 20");
 
+ ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="message.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Messagerie</title>
+</head>
+<body>
+	<?php
+	include("../include/header.inc.php");
+	include("../include/nav.inc.php"); ?>
+	<main>
+	<h2>Messagerie</h2>
+	<h3>Conversation avec <i><?php echo $R_pseudo; ?></i> :</h3>
+	<form method="POST">
+		<?php
+		if(mysqli_num_rows($result) >= 1) {
 			for ($row_no = $result->num_rows -1; $row_no >= 0 ; $row_no--) {
 				$result->data_seek($row_no);
 
@@ -30,25 +58,21 @@
 				$row[1] = mysqli_query($connect, "SELECT pseudo FROM utilisateur WHERE U_ID = '$row[1]'");
 				$row[1] = $row[1]->fetch_array(1);	
 				echo"<p>"; 
-				printf("Message de %s : %s <br>", $row[1]['pseudo'], $row[0]);
+				printf("<b>%s</b> : %s <br>", $row[1]['pseudo'], $row[0]);
 				echo"</p>";
 
 			}
-		} 
+		}
 
+		if (isset($_POST['envoie'])) {
+			if (!$message) echo "<br><b>Veuillez entrer un message</b><br>";
+		} ?>
 
-	if (isset($_POST['envoie'])) {
-		if (!$message) echo "<br><b>Veuillez entrer un message</b><br>";
-	}
- ?>
- <body>
- <meta charset="utf-8">
- <link rel="stylesheet" type="text/css" href="message.css">
-<form method="POST">
-	<label >Message :</label>
-	<br><br>
-	<textarea class="msg" rows="8" cols = "80" name="message"></textarea>
-	<br><br>
-	<input type="submit" value="Envoyer" name="envoie">
-</form>
+		<label>Nouveau message :</label>
+		<br><br>
+		<textarea class="msg" rows="8" cols = "80" name="message"></textarea>
+		<br><br>
+		<input type="submit" value="Envoyer" name="envoie">
+	</form>
+	</main>
 </body>

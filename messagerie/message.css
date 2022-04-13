@@ -1,3 +1,6 @@
+@import url("../include/header.inc.css");
+@import url("../include/nav.inc.css");
+
 .msg {
 		resize: none;
 	}
@@ -7,10 +10,12 @@ body {
     text-align: center;
     border: 1px outset black;
 }
+
 form {
     display: inline-block;
 }
 
 p {
+	word-break: break-all;
 	border: 2px outset beige;
 }

@@ -84,8 +84,9 @@
 					echo '<li>';
 					affUser($idcom, $row["U_ID"]);
 					echo '<button name="profil" value="'.$row["U_ID"].'">';
-					echo 'profil';
-					echo '</button>';
+					echo 'profil</button>';
+					echo '<button name="contacter" value="'.$row["U_ID"].'">';
+					echo 'contacter</button>';
 					echo '</li>';
 				}
 				echo "</ul></form>";
