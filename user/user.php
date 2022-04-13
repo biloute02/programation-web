@@ -4,6 +4,22 @@
 	include_once '../include/user.inc.php';
 	include_once '../include/annonce.inc.php';
 	$idcom = connex("myparam");
+	
+	//action si on veut contacter le locataire
+	if (isset($_POST['contacter'])) {
+		$_SESSION['R_U_ID'] = $_POST['contacter'];
+		header("Location: ../messagerie/envoie.php");
+		die();
+	}
+
+	//action si on veut visiter le profil du bailleur
+	if (isset($_POST['profil'])) {
+		$profil = $_POST['profil'];
+		$_SESSION['R_U_ID'] = $profil;
+		header("Location: ../user/user.php");
+		die();
+	}
+
 
 	//si aucun utilisateur n'est recherché, on regarde son profil
 	if (empty($_SESSION['R_U_ID'])) {
@@ -105,7 +121,7 @@
 			} ?>
 			</ul>
 		</form>
-		<form method="post" action="../annonces/reserver.php">
+		<form method="post" action="recherche_user.php">
 		<h3>Reçues</h3>
 		<?php
 		function  affDemandes($r_recu, $statut_res) {

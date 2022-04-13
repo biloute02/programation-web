@@ -12,9 +12,16 @@
 	}
 
 	// si l'U_ID de l'utilisateur a été renseigné
-	if (!empty($_POST['R_U_ID'])) {
-		$_SESSION['R_U_ID'] = $_POST['R_U_ID'];
+	if (!empty($_POST['profil'])) {
+		$_SESSION['R_U_ID'] = $_POST['profil'];
 		header("Location: ./user.php");
+		die();
+	}
+
+	//action si on veut contacter le locataire
+	if (isset($_POST['contacter'])) {
+		$_SESSION['R_U_ID'] = $_POST['contacter'];
+		header("Location: ../messagerie/envoie.php");
 		die();
 	}
 
@@ -76,7 +83,7 @@
 				foreach ($result as $row) {
 					echo '<li>';
 					affUser($idcom, $row["U_ID"]);
-					echo '<button name="R_U_ID" value="'.$row["U_ID"].'">';
+					echo '<button name="profil" value="'.$row["U_ID"].'">';
 					echo 'profil';
 					echo '</button>';
 					echo '</li>';
