@@ -23,7 +23,6 @@
 	
 	if (isset($_POST['envoie'])) {
 		$message = htmlentities(trim($_POST['message']), ENT_QUOTES, "UTF-8"); // permet l'ajout des tildes
-		$message = nl2br($message);
 		if ($message) {
 			$query1 = mysqli_query($connect, "INSERT INTO communiquer VALUES('$iddestinataire', '$idutilisateur', now(), '$message')");
 			header("Location:envoie.php");		
@@ -58,7 +57,7 @@
 				$row[1] = mysqli_query($connect, "SELECT pseudo FROM utilisateur WHERE U_ID = '$row[1]'");
 				$row[1] = $row[1]->fetch_array(1);	
 				echo"<p>"; 
-				printf("<b>%s</b> : %s <br>", $row[1]['pseudo'], $row[0]);
+				printf("<b>%s</b> : %s <br>", $row[1]['pseudo'], nl2br($row[0]));
 				echo"</p>";
 
 			}
