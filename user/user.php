@@ -42,7 +42,7 @@
 
 	if (estConnecte() == $R_U_ID) {
 		//on récupère les réservations envoyés par l'utilisateur
-		$query = "SELECT r.statut_res, a.A_ID, titre, date_post FROM reserve r, annonce a WHERE r.A_ID = a.A_ID AND r.U_ID = '$R_U_ID'";
+		$query = "SELECT a.U_ID, r.statut_res, a.A_ID, titre, date_post FROM reserve r, annonce a WHERE r.A_ID = a.A_ID AND r.U_ID = '$R_U_ID'";
 		$r_envoye = mysqli_query($idcom, $query);
 		$r_envoye = mysqli_fetch_all($r_envoye, MYSQLI_BOTH);
 		
@@ -66,7 +66,7 @@
 	<?php
 	include("../include/header.inc.php");
 	include("../include/nav.inc.php"); ?>
-    <form method="post" action="recherche_user.php">
+    <form id="recherche_user" method="post" action="recherche_user.php">
 		<input type="search" name="R_pseudo" placeholder="Rechercher" accesskey="s">
 		<button type="submit">OK</button>
 		<button type="submit" name="monProfil" value="1">mon profil</button>
@@ -115,7 +115,9 @@
 				echo '</dt>';
 				echo '<dd>Demande : <b>' . $row['statut_res'] . "</b></dd>";
 				echo '<dd><button name="A_ID" value="' . $row['A_ID'] . '">';
-					echo "Voir l'annonce</button></dd>";
+				echo "Voir l'annonce</button>";
+				echo '<button form="recherche_user" name="profil" value="' . $row['U_ID'] . '">';
+				echo "profil</button></dd>";
 				echo "</dl>";
 				echo "</li>";
 			} ?>

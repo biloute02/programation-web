@@ -41,6 +41,7 @@
 	// on fait une requête dans la base de donnée en fonction de R_pseudo
 	if (!empty($_SESSION['R_pseudo'])) {
 		$pseudo = $_SESSION['R_pseudo'];
+		$_SESSION['R_pseudo'] = "";
 		$query = "SELECT * from Utilisateur WHERE pseudo LIKE  '%$pseudo%'";
 	} else {
 		$query = "SELECT * from Utilisateur WHERE 1";
