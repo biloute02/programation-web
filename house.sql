@@ -92,8 +92,8 @@ Proche centre-ville, quartier anim&eacute;, transports &agrave; proximit&eacute;
 INSERT INTO Annonce(A_ID, statut, titre, type_logement, date_deb, date_fin, date_post, adresse, ville, cp, pays, contenu_annonce, prix, surface, nb_pieces, U_ID) values(4, 0, "Maison ami&eacute;noise",  'maison', STR_TO_DATE('06/08/2022', '%d/%c/%Y'), STR_TO_DATE('13/08/2022', '%d/%c/%Y'), STR_TO_DATE('18/03/2022', '%d/%c/%Y'), '14 avenue du Pr&eacute;', 'Amiens', '80000', 'France', "Maison ami&eacute;noise r&eacute;nov&eacute;e r&eacute;cemment, proche du centre-ville. 2 chambres, 1 salle de bain. Petit jardin &agrave; l’arri&grave;re.", 350, 90, 3, 1);
 INSERT INTO Annonce(A_ID, statut, titre, type_logement, date_deb, date_fin, date_post, adresse, ville, cp, pays, contenu_annonce, prix, surface, nb_pieces, U_ID) values(5, 1, "Maison &agrave; la campagne", 'maison', STR_TO_DATE('14/05/2022', '%d/%c/%Y'), STR_TO_DATE('28/05/2022', '%d/%c/%Y'), STR_TO_DATE('12/02/2022', '%d/%c/%Y'), '23 rue des Crocs', 'Saint-Pardoux-Morterolles', '23227', 'France', "Maison de campagne familiale. 4 chambres, 6 couchages (3 lits doubles, 1 lit superpos&eacute;), 2 salles de bain. Terrain de 1 hectare. Animaux autoris&eacute;s.", 400, 120, 5, 2);
 
-INSERT INTO Photo(P_ID, chemin, A_ID, U_ID, num_photo) values (1, './photos/1_0.jpg', 1, 5, 0);
-INSERT INTO Photo(P_ID, chemin, A_ID, U_ID, num_photo) values (2, './photos/1_1.png', 1, 5, 1);
+INSERT INTO Photo(P_ID, chemin, A_ID, U_ID, num_photo) values (1, './photos/1_0.pgn', 1, 5, 0);
+INSERT INTO Photo(P_ID, chemin, A_ID, U_ID, num_photo) values (2, './photos/1_1.jpg', 1, 5, 1);
 INSERT INTO Photo(P_ID, chemin, A_ID, U_ID, num_photo) values (3, './photos/2_0.jpg', 2, 2, 0);
 INSERT INTO Photo(P_ID, chemin, A_ID, U_ID, num_photo) values (4, './photos/2_1.jpg', 2, 2, 1);
 INSERT INTO Photo(P_ID, chemin, A_ID, U_ID, num_photo) values (5, './photos/3_0.jpg', 3, 3, 0);
