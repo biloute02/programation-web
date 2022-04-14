@@ -1,14 +1,15 @@
 <?php
-
-include_once "../include/myparam.inc.php";
+include_once "../include/connex.inc.php";
 
 if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère les données de l'utilisateur
-	$username = htmlentities(trim($_POST['username']), ENT_QUOTES, "UTF-8");
-	$password = htmlentities(trim($_POST['password']), ENT_QUOTES, "UTF-8");
-	$password1 = htmlentities(trim($_POST['password1']), ENT_QUOTES, "UTF-8");
-	$emailadress = htmlentities(trim($_POST['email']), ENT_QUOTES, "UTF-8");
-	$nomfamille = htmlentities(trim($_POST['family']), ENT_QUOTES, "UTF-8");
-	$prenom = htmlentities(trim($_POST['name']), ENT_QUOTES, "UTF-8");
+	$connect = connex("myparam");
+
+	$username = mysqli_real_escape_string($connect, $_POST['username']);
+	$password = mysqli_real_escape_string($connect, $_POST['password']);
+	$password1 = mysqli_real_escape_string($connect, $_POST['password1']);
+	$emailadress = mysqli_real_escape_string($connect, $_POST['email']);
+	$nomfamille = mysqli_real_escape_string($connect, $_POST['family']);
+	$prenom = mysqli_real_escape_string($connect, $_POST['name']);
 	$naissance = htmlentities(trim($_POST['birth']), ENT_QUOTES, "UTF-8");
 
 		if($username && $password && $password1 && $emailadress && $nomfamille && $prenom && $naissance){ // Si tout les champs sont remplies 
@@ -17,7 +18,7 @@ if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère le
 					if (preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/", $password)) {
 					
 						$passhash = password_hash($password, PASSWORD_DEFAULT); //Permet de hacher le mot de passe
-						$connect = connex("myparam");
+						
 
 
 						$test = mysqli_query($connect, "SELECT * FROM utilisateur WHERE email = '$emailadress'");
