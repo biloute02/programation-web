@@ -43,8 +43,8 @@
 	if (estConnecte() == $R_U_ID) {
 		//on récupère les réservations envoyés par l'utilisateur
 		$query = "SELECT a.U_ID, r.statut_res, a.A_ID, titre, date_post FROM reserve r, annonce a WHERE r.A_ID = a.A_ID AND r.U_ID = '$R_U_ID'";
-		$r_envoye = mysqli_query($idcom, $query);
-		$r_envoye = mysqli_fetch_all($r_envoye, MYSQLI_BOTH);
+		$r_envoie = mysqli_query($idcom, $query);
+		$r_envoie = mysqli_fetch_all($r_envoie, MYSQLI_BOTH);
 		
 		//on récupère les réservations reçues par l'utilisateur
 		$query = "SELECT r.statut_res, r.U_ID, a.A_ID, titre, date_post, pseudo
@@ -85,48 +85,52 @@
 	<h2>Notes</h2>
 		<ul>
 			<li><p>Moyenne : <?php echo moyenneNote($idcom, $R_U_ID) ?> / 5</p></li>
-			<?php if (estConnecte() && estConnecte() != $R_U_ID) { ?>
-			<li><form method="post" action="note_user.php">
-				<fieldset>
-					<legend>Donner votre avis</legend>
-					<input type="number" name="note" placeholder="note" min="1" max="5" required>
-					<br><textarea name="com" placeholder="commentaire" 
-							rows="6" cols="60" maxlength="250" required></textarea>
-					<br><button type="submit">OK</button>
-				</fieldset>
-			</form>
-			<?php } ?></li>
-			<li><a href="./note_user.php">Voir tous les avis</a>
-			</li>
+			<?php
+			if (estConnecte() && estConnecte() != $R_U_ID) { ?>
+				<li><form method="post" action="note_user.php">
+					<fieldset>
+						<legend>Donner votre avis</legend>
+						<input type="number" name="note" placeholder="note" min="1" max="5" required>
+						<br><textarea name="com" placeholder="commentaire" 
+								rows="6" cols="60" maxlength="500" required></textarea>
+						<br><button type="submit">OK</button>
+					</fieldset>
+				</form></li>
+			<?php
+			} ?>
+			<li><a href="./note_user.php">Voir tous les avis</a></li>
 		</ul>
 	<?php
+	//si on regarde sa page de profil, on affiche ses réservations
 	if (estConnecte() == $R_U_ID) { ?>
 	<hr>
 	<h2>Réservations</h2>
-		<form method="post" action="../annonces/annonce.php">
+	<form method="post" action="../annonces/annonce.php">
 		<h3>Envoyées</h3>
-			<ul>
-			<?php
-			foreach ($r_envoye as $row) {
-				echo '<li>';
-				echo '<dl>';
-				echo '<dt>"<u>' . $row['titre'] . '</u>" ';
-					echo "mise en ligne le " . $row['date_post'] . ".";
-				echo '</dt>';
-				echo '<dd>Demande : <b>' . $row['statut_res'] . "</b></dd>";
-				echo '<dd><button name="A_ID" value="' . $row['A_ID'] . '">';
-				echo "Voir l'annonce</button>";
-				echo '<button form="recherche_user" name="profil" value="' . $row['U_ID'] . '">';
-				echo "profil</button></dd>";
-				echo "</dl>";
-				echo "</li>";
-			} ?>
-			</ul>
-		</form>
-		<form method="post" action="recherche_user.php">
+		<ul>
+		<?php
+		//on affiche chaque réservation du tableau $r_envoie
+		foreach ($r_envoie as $row) {
+			echo '<li>';
+			echo '<dl>';
+			echo '<dt>"<u>' . $row['titre'] . '</u>" ';
+				echo "mise en ligne le " . $row['date_post'] . ".";
+			echo '</dt>';
+			echo '<dd>Demande : <b>' . $row['statut_res'] . "</b></dd>";
+			echo '<dd><button name="A_ID" value="' . $row['A_ID'] . '">';
+			echo "Voir l'annonce</button>";
+			echo '<button form="recherche_user" name="profil" value="' . $row['U_ID'] . '">';
+			echo "profil</button></dd>";
+			echo "</dl>";
+			echo "</li>";
+		} ?>
+		</ul>
+	</form>
+	<form method="post" action="recherche_user.php">
 		<h3>Reçues</h3>
 		<?php
-		function  affDemandes($r_recu, $statut_res) {
+		//fonction pour afficher les demandes de réservation reçues en fonction du statut
+		function affDemandes($r_recu, $statut_res) {
 			foreach ($r_recu as $row) {
 				if ($row['statut_res'] != $statut_res) continue;
 				echo '<li>';
@@ -152,7 +156,7 @@
 			<ul>
 			<?php affDemandes($r_recu, ACCEPTE); ?>
 			</ul>
-		</form>
+	</form>
 	<?php
 	} ?>
 	<hr>
@@ -161,6 +165,7 @@
 		<h3>Publiques</h3>
 		<ul>
 		<?php
+		//on affiche chaque annonce publique du tableau $r_annonce
 		foreach ($r_annonce as $row) {
 			if ($row['statut']) {
 				echo '<li>';
@@ -172,6 +177,7 @@
 		} ?>
 		</ul>
 		<?php
+		//si on regarde son profil, on affiche les annonces privées
 		if (estConnecte() == $R_U_ID) { ?>
 			<h3>Privées</h3>
 			<ul>
@@ -184,10 +190,10 @@
 					echo "Voir cette annonce.</button>";
 					echo '</li>';
 				}
-			}
-		}
-		?>
-		</ul>
+			} ?>
+			</ul>
+		<?php
+		} ?>
 		</form>
 </body>
 </html>

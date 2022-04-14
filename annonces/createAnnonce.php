@@ -7,7 +7,6 @@
 		<title>Créer Annonce</title>
 	</head>
 	<body>
-	
 		<?php
 			include '../include/connex.inc.php';			
 			session_start();
@@ -17,7 +16,7 @@
 			include '../include/header.inc.php';
 			include '../include/nav.inc.php';
 		?>
-		
+		<main>
 			<form method="post" action="traiteAnnonce.php" enctype="multipart/form-data">
 			
 			<!-- class Titre -->
@@ -87,7 +86,7 @@
 			<div class="desc">
 			<p>
 			<label for="desc">Description<br /></label>
-			<textarea id="desc" name="desc" rows="4" cols="50" required></textarea>
+			<textarea id="desc" name="desc" rows="4" cols="50" maxlength="5000" required></textarea>
 			</p>
 			</div>
 			
@@ -95,7 +94,7 @@
 			<div class="prix">
 			<p>
 			<label for="prix">Prix</label>
-			<input type="number" id="prix" name="prix" min="0" required> &euro;
+			<input type="number" id="prix" name="prix" min="0" max="10000" required> &euro;
 			</p>
 			</div>
 			
@@ -103,7 +102,7 @@
 			<div class="surface">
 			<p>
 			<label for="surface">Surface</label>
-			<input type="number" id="surface" name="surface" min="0" required> m<sup>2</sup>	
+			<input type="number" id="surface" name="surface" min="0" max="1000" required> m<sup>2</sup>	
 			</p>
 			</div>
 			
@@ -111,7 +110,7 @@
 			<div class="pieces">
 			<p>
 			<label for="pieces">Nombre de Pi&egrave;ces</label>
-			<input type="number" id="pieces" name="pieces" min="0" required>	
+			<input type="number" id="pieces" name="pieces" min="0" max="100" required>	
 			</p>
 			</div>
 			
@@ -129,6 +128,6 @@
 			<input type="submit" name="submit" value="Publier" required>
 			</p>
 			</div>
-
+		</main>
 	</body>
 </html>

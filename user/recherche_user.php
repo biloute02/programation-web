@@ -78,25 +78,24 @@
 			<button type="submit" name="monProfil" value="true">mon profil</button>
 		</form>
 	<?php
-		if (isset($result)) {
-			if (count($result) > 1) {
-				echo '<form method="post"><ul>';
-				foreach ($result as $row) {
-					echo '<li>';
-					affUser($idcom, $row["U_ID"]);
-					echo '<button name="profil" value="'.$row["U_ID"].'">';
-					echo 'profil</button>';
-					echo '<button name="contacter" value="'.$row["U_ID"].'">';
-					echo 'contacter</button>';
-					echo '</li>';
-				}
-				echo "</ul></form>";
-			} else {
-				$R_U_ID = false;
-				echo "<p>Aucun résultat</p>";
+		//s'il y a plusieurs pseudos qui correspondent à la recherche
+		if (count($result) > 1) {
+			echo '<form method="post"><ul>';
+			//on affiche tous les utilisateurs trouvés
+			foreach ($result as $row) {
+				echo '<li>';
+				affUser($idcom, $row["U_ID"]);
+				echo '<button name="profil" value="'.$row["U_ID"].'">';
+				echo 'profil</button>';
+				echo '<button name="contacter" value="'.$row["U_ID"].'">';
+				echo 'contacter</button>';
+				echo '</li>';
 			}
+			echo "</ul></form>";
+		//sinon aucun résultat n'est affiché
 		} else {
-			echo "<p>Faites une recherche d'utilisateur</p>";
+			$R_U_ID = false;
+			echo "<p>Aucun résultat</p>";
 		}
 	?>
 	</main>
