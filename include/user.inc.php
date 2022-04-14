@@ -32,14 +32,6 @@ function affUser($idcom, $U_ID, $desc = false)
 	printf("</dl>");
 }
 
-/*
-function affAvis($idcom, $R_U_ID, $U_ID) {
-	$query = "SELECT note, contenu_eval FROM evaluer WHERE U_ID_est_evalue = '$R_U_ID' AND U_ID_evalue = '$U_ID':";
-	$result = mysqli_query($idcom, $query);
-	$result = mysqli_fetch_array($result, MYSQLI_BOTH);
-
-}*/
-
 /* Affiche la liste de tous les avis d'un utilisateur
  */
 function affAvisAll($idcom, $R_U_ID)
