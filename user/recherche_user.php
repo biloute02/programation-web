@@ -42,9 +42,9 @@
 	if (!empty($_SESSION['R_pseudo'])) {
 		$pseudo = $_SESSION['R_pseudo'];
 		$_SESSION['R_pseudo'] = "";
-		$query = "SELECT * from Utilisateur WHERE pseudo LIKE  '%$pseudo%'";
+		$query = "SELECT * FROM utilisateur WHERE pseudo LIKE  '%$pseudo%'";
 	} else {
-		$query = "SELECT * from Utilisateur WHERE 1";
+		$query = "SELECT * FROM utilisateur WHERE 1";
 	}
 	$result = mysqli_query($idcom, $query);
 	$result = mysqli_fetch_all($result, MYSQLI_BOTH);
