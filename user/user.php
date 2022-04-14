@@ -156,7 +156,7 @@
 	<hr>
 	<h2>Annonces</h2>
 		<form method="post" action="../annonces/annonce.php">
-		<h3>Publics</h3>
+		<h3>Publiques</h3>
 		<ul>
 		<?php
 		foreach ($r_annonce as $row) {

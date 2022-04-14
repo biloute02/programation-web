@@ -21,6 +21,7 @@ if(isset($_POST["submit"])) {
 	$nb_p = trim($_POST["pieces"]);
 	$file = $_FILES['photo'];
 	$SQL_INSERT = "INSERT INTO annonce (statut, titre, type_logement, date_deb, date_fin, date_post, adresse, ville, cp, pays, contenu_annonce, prix, surface, nb_pieces, U_ID) VALUES(1, '$titre', '$type_l', '$date_d', '$date_f', '$date_p', '$adrs', '$ville', $cp, '$pays','$desc', $prix, $surface, $nb_p, $U_ID)";
+	
 	if (strlen($pays) <= 50 && strlen($ville) <= 50 && strlen($adrs) <= 50 && strlen($titre) <= 30 && $cp >= 0 && $cp <= 99999) {
 
 					if(preg_match('/^[0-9]+\ [a-zA-Z- 0-9]+/', $adrs)) {	
@@ -45,7 +46,7 @@ if(isset($_POST["submit"])) {
 					}
 					mysqli_close($idcom);		
 				}else{
-					echo "Adresse invalide <a href='./createAnnonce.html'>Retour sur la page de creation</a>";
+					echo "Adresse invalide <a href='./createAnnonce.php'>Retour sur la page de creation</a>";
 					die();
 				}
 				echo "Votre annonce a bien ete poste <a href='../index.php'>Retour sur la page d'accueil</a>";
