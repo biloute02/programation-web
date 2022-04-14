@@ -51,7 +51,7 @@ if (isset($_POST["submit"])) {
 		$valide = false;
 	}
 	if (!preg_match('/^[0-9]+\ [a-zA-Z- 0-9]+/', $adrs) or mb_strlen($desc, 'utf8') > 50) {	
-		echo "Adresse invalide : '0 texte', taille <= 50.";
+		echo "Adresse invalide : format '2 rue...', taille <= 50.";
 		$valide = false;
 	}
 	if ($prix < 0 or $prix > 10000) {
@@ -79,7 +79,12 @@ if (isset($_POST["submit"])) {
 			$nom = $A_ID . "_" . $i . "." . $ext;
 			$origine = $file['tmp_name'][$i];
 			$destination = '../photos/'.$nom;
-			move_uploaded_file($origine,$destination);
+			if (!move_uploaded_file($origine,$destination)) {
+				echo "Sauvegarde de la photo impossible.<br>";
+				echo "Modifiez les droits d'accès du dossier photos 'sharemyhouse/photos',<br>";
+				echo "ou contactez votre administrateur.<br>";
+				break;
+			}
 
 			$destination = './photos/'.$nom;
 			$query = "INSERT INTO photo VALUES(null, '$destination', $U_ID, $A_ID, $i)";
