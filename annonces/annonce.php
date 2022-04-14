@@ -11,6 +11,11 @@
 	
 	$idcom = connex("myparam");
 	$query = "SELECT A_ID, statut FROM annonce WHERE 1";
+
+	$result = mysqli_fetch_all(mysqli_query($idcom, $query));
+	echo "ici<br>";
+	print_r($result);
+	echo "la<br>";
 	
 	if (!empty($_POST['prixmin'])) {
 		$pmin = $_POST['prixmin'];

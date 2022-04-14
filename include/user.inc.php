@@ -17,7 +17,7 @@ function moyenneNote($idcom, $U_ID)
  */
 function affUser($idcom, $U_ID, $desc = false)
 {
-	$query = "SELECT * FROM Utilisateur WHERE U_ID = '$U_ID'";
+	$query = "SELECT * FROM utilisateur WHERE U_ID = '$U_ID'";
 	$result = mysqli_query($idcom, $query);
 	$result = mysqli_fetch_array($result, MYSQLI_BOTH);
 	printf('<dl class="user">');

@@ -31,12 +31,12 @@
 
 	//on récupère les informations sur l'utilisateur
 	$R_U_ID = $_SESSION['R_U_ID'];
-	$query = "SELECT * FROM Utilisateur WHERE U_ID = '$R_U_ID'";
+	$query = "SELECT * FROM utilisateur WHERE U_ID = '$R_U_ID'";
 	$r_utilisateur = mysqli_query($idcom, $query);
 	$r_utilisateur = mysqli_fetch_array($r_utilisateur, MYSQLI_BOTH);
 	
 	//on récupère les annonces de l'utilisateur
-	$query = "SELECT * FROM Annonce WHERE U_ID = '$R_U_ID'";
+	$query = "SELECT * FROM annonce WHERE U_ID = '$R_U_ID'";
 	$r_annonce = mysqli_query($idcom, $query);
 	$r_annonce = mysqli_fetch_all($r_annonce, MYSQLI_BOTH);
 
