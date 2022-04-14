@@ -7,7 +7,8 @@ if (isset($_POST['connexion'])) {
 	$email = htmlentities(trim($_POST['email']), ENT_QUOTES, "UTF-8"); 
 	$password = htmlentities(trim($_POST['password']), ENT_QUOTES, "UTF-8");
 	if ($email && $password) {
-		$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
+		$connect = connex("myparam");
+
 		$passhash = password_hash($password, PASSWORD_DEFAULT);
 		$test = mysqli_query($connect, "SELECT * FROM utilisateur WHERE email = '$email'");
 

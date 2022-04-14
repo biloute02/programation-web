@@ -5,10 +5,11 @@
 function connex($param)
 {
 	include($param.".inc.php");
-	$idcom=mysqli_connect(MYHOST,MYUSER,MYPASS,MYBASE);
-	if(!$idcom)
-	{
-    echo "<script type=text/javascript>";
+	$idcom = mysqli_connect(MYHOST,MYUSER,MYPASS,MYBASE);
+	//change l'encodage en celui de la base de données
+	mysqli_set_charset($idcom, "utf8");
+	if(!$idcom) {
+		echo "<script type=text/javascript>";
 		echo "alert('Connexion Impossible à la base  $base')</script>";
 	}
 	return $idcom;

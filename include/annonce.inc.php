@@ -3,8 +3,7 @@
  */
 function afficherannonceimage($idcom, $A_ID)
 {
-	$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
-	$query = mysqli_query($connect, "SELECT * FROM annonce WHERE A_ID = '$A_ID'");
+	$query = mysqli_query($idcom, "SELECT * FROM annonce WHERE A_ID = '$A_ID'");
 
 	$row = $query->fetch_array();
 
@@ -31,7 +30,7 @@ function afficherannonceimage($idcom, $A_ID)
 	echo "Description : " . nl2br($row['contenu_annonce']);
 	echo "</dd></dl>";
 
-	$query1 = mysqli_query($connect, "SELECT chemin FROM photo WHERE A_ID = $A_ID");
+	$query1 = mysqli_query($idcom, "SELECT chemin FROM photo WHERE A_ID = $A_ID");
 	echo "<br>";
 	$padding = 0;
 	while ($rows = mysqli_fetch_assoc($query1)){
@@ -45,8 +44,7 @@ function afficherannonceimage($idcom, $A_ID)
  */
 function afficherannonce($idcom, $A_ID)
 {
-	$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
-	$query = mysqli_query($connect, "SELECT * FROM annonce WHERE A_ID = '$A_ID'");
+	$query = mysqli_query($idcom, "SELECT * FROM annonce WHERE A_ID = '$A_ID'");
 
 	$row = $query->fetch_array();
 

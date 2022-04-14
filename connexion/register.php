@@ -17,7 +17,8 @@ if (isset($_POST['submit'])) { // Si 'enregistrer' est cliqué, on récupère le
 					if (preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/", $password)) {
 					
 						$passhash = password_hash($password, PASSWORD_DEFAULT); //Permet de hacher le mot de passe
-						$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
+						$connect = connex("myparam");
+
 
 						$test = mysqli_query($connect, "SELECT * FROM utilisateur WHERE email = '$emailadress'");
 

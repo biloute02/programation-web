@@ -12,7 +12,7 @@
 		header("Location: ../user/recherche_user.php");
 	}
 
-	$connect = mysqli_connect(MYHOST, MYUSER, MYPASS, MYBASE) or die("Erreur de connexion à la base de données");
+	$connect = connex("myparam");
 
 	$iddestinataire = $_SESSION['R_U_ID'];
 	$query = "SELECT pseudo FROM utilisateur WHERE U_ID = '" . $_SESSION['R_U_ID'] . "'";
