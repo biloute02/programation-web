@@ -1,6 +1,6 @@
 Nom Prenom N°étudiant
 Bahia-Roussel Sophia 22010910
 Blot Damien 22010042
-Boudoux Lilian
-Margotin Clément
+Boudoux Lilian 22002004
+Margotin Clément 22010362
 
