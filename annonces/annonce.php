@@ -11,7 +11,7 @@
 	
 	$idcom = connex("myparam");
 	$query = "SELECT A_ID, statut FROM annonce WHERE 1";
-	
+
 	if (!empty($_POST['prixmin'])) {
 		$pmin = $_POST['prixmin'];
 		$query .= " AND prix >= $pmin";

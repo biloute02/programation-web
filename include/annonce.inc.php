@@ -28,7 +28,7 @@ function afficherannonceimage($idcom, $A_ID)
 	echo "Prix : " . $row['prix'] . "<br>";
 	echo "Surface : " . $row['surface'] . "<br>";
 	echo "Nombre de pièces : " . $row['nb_pieces'] . "<br>";
-	echo "Description : " . $row['contenu_annonce'];
+	echo "Description : " . nl2br($row['contenu_annonce']);
 	echo "</dd></dl>";
 
 	$query1 = mysqli_query($connect, "SELECT chemin FROM photo WHERE A_ID = $A_ID");
