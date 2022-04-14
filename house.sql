@@ -1,8 +1,8 @@
 CREATE TABLE utilisateur (
     U_ID int AUTO_INCREMENT,
-    email varchar(30) NOT NULL,
+    email varchar(50) NOT NULL,
     mdp varchar(255) NOT NULL,
-    pseudo varchar(15) NOT NULL,
+    pseudo varchar(50) NOT NULL,
     nom varchar (50),
     prenom varchar(50),
     date_naissance DATE,
