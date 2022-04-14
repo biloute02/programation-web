@@ -3,19 +3,20 @@ if(isset($_POST["submit"])) {
 	date_default_timezone_set('Europe/Paris');
 	include '../include/connex.inc.php';
 	session_start();
-	
 	$U_ID = $_SESSION['U_ID'];
+	
+	$idcom = connex("myparam");
 
-	$titre = $_POST["titre"];
+	$titre = mysqli_real_escape_string($idcom, $_POST["titre"]);
 	$type_l = $_POST["logement"];
 	$date_d = $_POST["date_deb"];
 	$date_f = $_POST["date_fin"];
 	$date_p = date('Y-m-d');
-	$adrs = trim($_POST["adresse"]);
-	$ville = trim($_POST["ville"]);
+	$adrs = mysqli_real_escape_string($idcom, trim($_POST["adresse"]));
+	$ville = mysqli_real_escape_string($idcom, trim($_POST["ville"]));
 	$cp = trim($_POST["CP"]);
-	$pays = trim($_POST["pays"]);
-	$desc = trim($_POST["desc"]);
+	$pays = mysqli_real_escape_string($idcom, trim($_POST["pays"]));
+	$desc = mysqli_real_escape_string($idcom, trim($_POST["desc"]));
 	$prix = trim($_POST["prix"]);
 	$surface = trim($_POST["surface"]);
 	$nb_p = trim($_POST["pieces"]);
@@ -24,7 +25,6 @@ if(isset($_POST["submit"])) {
 	if (strlen($pays) <= 50 && strlen($ville) <= 50 && strlen($adrs) <= 50 && strlen($titre) <= 30 && $cp >= 0 && $cp <= 99999) {
 
 					if(preg_match('/^[0-9]+\ [a-zA-Z- 0-9]+/', $adrs)) {	
-					$idcom = connex("myparam") or die("Erreur de connexion");
 					mysqli_query($idcom, $SQL_INSERT);
 					
 					$selectaid = "SELECT MAX(A_ID) FROM annonce WHERE  U_ID = $U_ID";
