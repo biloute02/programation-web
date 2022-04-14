@@ -81,7 +81,7 @@ if (isset($_POST["submit"])) {
 			$destination = '../photos/'.$nom;
 			if (!move_uploaded_file($origine,$destination)) {
 				echo "Sauvegarde de la photo impossible.<br>";
-				echo "Modifiez les droits d'accès du dossier photos 'sharemyhouse/photos',<br>";
+				echo "Modifiez les droits d'accès du dossier photos <i>sharemyhouse/photos</i>,<br>";
 				echo "ou contactez votre administrateur.<br>";
 				break;
 			}

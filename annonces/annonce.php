@@ -34,11 +34,11 @@
 	}
 	if (!empty($_POST['pays'])) {
 		$pays = $_POST['pays'];
-		$query .= " AND UPPER(pays) = UPPER('$pays')";
+		$query .= " AND UPPER(pays) LIKE UPPER('%$pays%')";
 	}
 	if (!empty($_POST['ville'])) {
 		$ville = $_POST['ville'];
-		$query .= " AND UPPER(ville) = UPPER('$ville')";
+		$query .= " AND UPPER(ville) LIKE UPPER('%$ville%')";
 	}
 	if (!empty($_POST['piecemin'])) {
 		$pmin = $_POST['piecemin'];
@@ -75,17 +75,17 @@
 			<select name="logement" id="logement_select">
 				<option value="" disabled selected>--Choisir une option--</option>
 				<option value="maison">Maison</option>
-				<option value="appart">Appartement</option>
+				<option value="appartement">Appartement</option>
 			</select>
 	<br><label id="prixmin">Prix (€) :</label> 
-	<input type="number" name="prixmin" accesskey="s" placeholder="Minimum" id="prixmin" min="0">
-	<input type="number" name="prixmax" accesskey="s" placeholder="Maximum" id="prixmax" min="0">
+	<input type="number" name="prixmin" accesskey="s" placeholder="Minimum" id="prixmin" min="1">
+	<input type="number" name="prixmax" accesskey="s" placeholder="Maximum" id="prixmax" min="1">
 	<br><label id="datedeb">Dates début | fin:</label>
 	<input type="date" name="datedebut" id="datedeb">
 	<input type="date" name="datefin" id="datefin">
 	<br><label id="piecemin">Nombre de pièces :</label> 
-	<input type="number" name="piecemin" accesskey="s" placeholder="Minimum" id="piecemin" min="0">
-	<input type="number" name="piecemax" accesskey="s" placeholder="Maximum" id="piecemax" min="0">
+	<input type="number" name="piecemin" accesskey="s" placeholder="Minimum" id="piecemin" min="1">
+	<input type="number" name="piecemax" accesskey="s" placeholder="Maximum" id="piecemax" min="1">
 	<br>
 	<input type="submit" name="rechercher" value="Rechercher">
 	</form>
