@@ -26,6 +26,10 @@ if (isset($_POST["submit"])) {
 	
 	$valide = true;
 
+	if ($date_d > $date_f) {
+		echo "Date de début et de fin invalides. La date de début doit être <b>avant</b> la date de fin.";
+		$valide = false;
+	}
 	if (mb_strlen($pays, 'utf8') > 50) {
 		echo "Pays invalide : taille <= 50.";
 		$valide = false;
@@ -92,7 +96,7 @@ if (isset($_POST["submit"])) {
 		}
 		echo "Votre annonce a bien ete postée <a href='../index.php'>Retour sur la page d'accueil</a>";
 	} else {
-		echo "<a href='./createAnnonce.php'>Retour sur la page de création</a>";
+		echo "<br><a href='./createAnnonce.php'>Retour sur la page de création</a>";
 	}
 	mysqli_close($idcom);		
 }

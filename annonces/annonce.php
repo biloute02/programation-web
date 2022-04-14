@@ -30,7 +30,7 @@
 	}
 	if (!empty($_POST['datefin'])) {
 		$datef = $_POST['datefin'];
-		$query .= " AND date_fin >= STR_TO_DATE('$datef', '%Y-%m-%d') AND STR_TO_DATE('$datef', '%Y-%m-%d') > date_debut";
+		$query .= " AND date_fin >= STR_TO_DATE('$datef', '%Y-%m-%d') AND STR_TO_DATE('$datef', '%Y-%m-%d') > date_deb";
 	}
 	if (!empty($_POST['pays'])) {
 		$pays = $_POST['pays'];
